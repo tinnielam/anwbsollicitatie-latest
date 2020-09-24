@@ -42,6 +42,7 @@ class GoogleMaps extends React.Component {
             lng={key.fromLoc.lon}
             text={key.events.text}
             color="red"
+            icon="fas fa-cars"
           />
         ))
       )
@@ -57,6 +58,7 @@ class GoogleMaps extends React.Component {
             lng={key.toLoc.lon}
             text={key.events.text}
             color="blue"
+            icon="fas fa-cars"
           />
         ))
       )
@@ -72,6 +74,7 @@ class GoogleMaps extends React.Component {
             lng={key.fromLoc.lon}
             text={key.events.text}
             color="orange"
+            icon="fas fa-tools"
           />
         ))
       )
@@ -87,6 +90,7 @@ class GoogleMaps extends React.Component {
             lng={key.toLoc.lon}
             text={key.events.text}
             color="orange"
+            icon="fas fa-tools"
           />
         ))
       )

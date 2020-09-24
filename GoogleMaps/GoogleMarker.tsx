@@ -10,7 +10,7 @@ const Marker = (props: any) => {
           style={{ backgroundColor: color, cursor: 'pointer' }}
           title={name}          
         />
-        <i className={icon}></i>
+        <i className={icon} ></i>
         <div className="pulse" />
       </div>
     );
