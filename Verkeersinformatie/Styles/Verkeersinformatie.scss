@@ -1,0 +1,40 @@
+#title {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+#verkeersinformatie {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  width: 50%;
+}
+
+#verkeersinformatie td, #verkeersinformatie th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#verkeersinformatie tr:nth-child(even){background-color: #f2f2f2;}
+
+#verkeersinformatie tr:hover {background-color: #ddd;}
+
+#verkeersinformatie th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4e4e4e;
+  color: white;
+}
+
+#map {
+  height: 100%;
+}
+
+html,
+body {
+  height: 0%;
+  margin: 0;
+  padding: 0;
+}
