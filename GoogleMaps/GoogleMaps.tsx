@@ -4,25 +4,37 @@ import Marker from "./GoogleMarker";
 import AnwbData from "../Data/AnwbData";
 
 class GoogleMaps extends React.Component {
-  public decodedLevels: []
+  public decodedLevels: [];
 
   constructor(props: any) {
     super(props);
     this.state = {
       error: null,
-      verkeersinformatie: []
+      verkeersinformatieJams: [],
+      verkeersinformatieRadars: [],
+      verkeersinformatieRoadworks: []
     };
   }
 
   public componentDidMount(): void {
-    const anwbData = new AnwbData();
-    anwbData
+    const anwbDataJams = new AnwbData();
+    anwbDataJams
       .getAnwbData("jams")
-      .then(data => this.setState({ verkeersinformatie: data }));
+      .then(data => this.setState({ verkeersinformatieJams: data }));
+
+    const anwbDataRoadworks = new AnwbData();
+    anwbDataRoadworks
+      .getAnwbData("roadworks")
+      .then(data => this.setState({ verkeersinformatieRoadworks: data }));
+
+    const anwbDataRadars = new AnwbData();
+    anwbDataRadars
+      .getAnwbData("radars")
+      .then(data => this.setState({ verkeersinformatieRadars: data }));
   }
 
-  private getFromLocation() {
-    return this.state.verkeersinformatie.map(verkeersinformatie =>
+  private getFromLocationJams() {
+    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams.map((key, index) => (
           <Marker
@@ -36,8 +48,8 @@ class GoogleMaps extends React.Component {
     );
   }
 
-  private getToLocation() {
-    return this.state.verkeersinformatie.map(verkeersinformatie =>
+  private getToLocationJams() {
+    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams.map((key, index) => (
           <Marker
@@ -51,37 +63,101 @@ class GoogleMaps extends React.Component {
     );
   }
 
-  private renderPolylines(map, maps): any {    
+  private getFromLocationRoadworks() {
+    return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.roadworks.map((key, index) => (
+          <Marker
+            lat={key.fromLoc.lat}
+            lng={key.fromLoc.lon}
+            text={key.events.text}
+            color="red"
+          />
+        ))
+      )
+    );
+  }
+
+  private getToLocationRoadworks() {
+    return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.roadworks.map((key, index) => (
+          <Marker
+            lat={key.toLoc.lat}
+            lng={key.toLoc.lon}
+            text={key.events.text}
+            color="blue"
+          />
+        ))
+      )
+    );
+  }
+
+  private getFromLocationRadars() {
+    return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.radars.map((key, index) => (
+          <Marker
+            lat={key.fromLoc.lat}
+            lng={key.fromLoc.lon}
+            text={key.events.text}
+            color="red"
+          />
+        ))
+      )
+    );
+  }
+
+  private getToLocationRadars() {
+    return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.radars.map((key, index) => (
+          <Marker
+            lat={key.toLoc.lat}
+            lng={key.toLoc.lon}
+            text={key.events.text}
+            color="blue"
+          />
+        ))
+      )
+    );
+  }
+
+  private renderPolylines(map, maps): any {
     let geodesicPolyline = new maps.Polyline({
       path: this.props.markers,
       geodesic: true,
-      strokeColor: '#00a1e1',
+      strokeColor: "#00a1e1",
       strokeOpacity: 1.0,
       strokeWeight: 4
-    })
-    geodesicPolyline.setMap(map)
+    });
+    geodesicPolyline.setMap(map);
   }
 
   render() {
     return (
-      <div style={{ height: "100vh", width: "50%",float: "right" }}>
+      <div style={{ height: "100vh", width: "50%", float: "right" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A" }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
-        onGoogleApiLoaded={({map, maps}) => this.renderPolylines(map, maps)}
+          onGoogleApiLoaded={({ map, maps }) => this.renderPolylines(map, maps)}
         >
-          {this.getFromLocation()}
-          {this.getToLocation()}
+          {this.getFromLocationJams()}
+          {this.getToLocationJams()}
+          {this.getFromLocationRadars()}
+          {this.getToLocationRadars()}
+          {this.getFromLocationRoadworks()}
+          {this.getToLocationRoadworks()}
         </GoogleMapReact>
       </div>
     );
   }
   static defaultProps = {
-      markers: [
-    {lat: 53.42728, lng: -6.24357},
-    {lat: 43.681583, lng: -79.61146}
-  ],
+    markers: [
+      { lat: 53.42728, lng: -6.24357 },
+      { lat: 43.681583, lng: -79.61146 }
+    ],
     center: {
       lat: 52.254709,
       lng: 5.353826
