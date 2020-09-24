@@ -40,7 +40,7 @@ class VerkeersinformatieJams extends React.Component {
   }
 
   private renderTableHeaderJams(): JSX.Element {
-    return (
+    return (      
       <tr>
         <th>Rijksweg</th>
         <th>Traject</th>
