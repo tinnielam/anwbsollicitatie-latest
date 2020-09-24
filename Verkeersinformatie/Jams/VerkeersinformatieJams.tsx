@@ -32,7 +32,7 @@ class VerkeersinformatieJams extends React.Component {
             </td>
             <td>{key.reason}</td>
             <td>{key.distance / 1000 + " KM"}</td>
-            <td>{key.delay / 60}</td>
+            <td>{key.delay / 60 + " min"}</td>
           </tr>
         ))
       )
