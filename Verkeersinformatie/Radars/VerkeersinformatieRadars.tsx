@@ -31,8 +31,6 @@ class VerkeersinformatieRadars extends React.Component {
               {key.from + " =>"} {key.to}
             </td>
             <td>{key.reason}</td>
-            <td>{key.distance / 1000 + " KM"}</td>
-            <td>{key.delay / 60}</td>
           </tr>
         ))
       )
@@ -46,8 +44,6 @@ class VerkeersinformatieRadars extends React.Component {
         <th>Traject</th>
         <th>Route</th>
         <th>Reden</th>
-        <th>Aantal KM</th>
-        <th>Tijd</th>
       </tr>
     );
   }
@@ -55,7 +51,7 @@ class VerkeersinformatieRadars extends React.Component {
   render(): JSX.Element {
     return (
       <div>
-        <h1 id="title">Actuele Flitsers</h1>
+        <h5 id="title">Actuele Flitsers</h5>
         <table id="verkeersinformatie">
           <tbody>
             {this.renderTableHeaderRadars()}

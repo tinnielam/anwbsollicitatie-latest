@@ -71,7 +71,7 @@ class GoogleMaps extends React.Component {
             lat={key.fromLoc.lat}
             lng={key.fromLoc.lon}
             text={key.events.text}
-            color="red"
+            color="orange"
           />
         ))
       )
@@ -86,7 +86,7 @@ class GoogleMaps extends React.Component {
             lat={key.toLoc.lat}
             lng={key.toLoc.lon}
             text={key.events.text}
-            color="blue"
+            color="orange"
           />
         ))
       )
@@ -101,7 +101,7 @@ class GoogleMaps extends React.Component {
             lat={key.fromLoc.lat}
             lng={key.fromLoc.lon}
             text={key.events.text}
-            color="red"
+            color="black"
           />
         ))
       )
@@ -116,7 +116,7 @@ class GoogleMaps extends React.Component {
             lat={key.toLoc.lat}
             lng={key.toLoc.lon}
             text={key.events.text}
-            color="blue"
+            color="black"
           />
         ))
       )

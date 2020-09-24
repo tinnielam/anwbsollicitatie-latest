@@ -46,7 +46,7 @@ class VerkeersinformatieJams extends React.Component {
         <th>Traject</th>
         <th>Route</th>
         <th>Reden</th>
-        <th>Aantal KM</th>
+        <th>KM</th>
         <th>Tijd</th>
       </tr>
     );
@@ -55,6 +55,7 @@ class VerkeersinformatieJams extends React.Component {
   public render(): JSX.Element {
     return (
       <div>
+        <h5 id="title">Actuele Files</h5>
         <table id="verkeersinformatie">
           <tbody>
             {this.renderTableHeaderJams()}
