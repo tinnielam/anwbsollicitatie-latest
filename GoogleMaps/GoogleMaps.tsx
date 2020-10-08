@@ -130,8 +130,13 @@ class GoogleMaps extends React.Component {
   }
 
   private renderPolylines(map, maps): any {
+    let encoded_data =
+      "ohj}Hyd{a@NQx@}BFUJWD@D?DAHK@EBK?O?AAKP_@dAmBBi@rFmM|[cu@pCqGd@eAfLyWl@uAXs@DKRe@`CwFp@qAx@uAdDyFnI{NhBwCx@qAn@cA`CmDp@{@p@s@`KmJnCkCl@k@pDuD~A_BlEmENO`@a@^WNIb@WtBgApCoATIHCLEHCZCh@Ab@Cr@IbAOfASZMx@[VGJCPGb@Oj@In@Ct@Mr@SXUNM";
+
+    let decode = google.maps.geometry.encoding.decodePath(encoded_data);
+
     let geodesicPolyline = new maps.Polyline({
-      path: this.props.markers,
+      path: decode,
       geodesic: true,
       strokeColor: "#00a1e1",
       strokeOpacity: 1.0,
@@ -144,9 +149,10 @@ class GoogleMaps extends React.Component {
     return (
       <div style={{ height: "100vh", width: "50%", float: "right" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A" }}
+          bootstrapURLKeys={{ key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A", libraries:['geometry'] }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
+          yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.renderPolylines(map, maps)}
         >
           {this.getFromLocationJams()}
