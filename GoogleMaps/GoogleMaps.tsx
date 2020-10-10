@@ -11,20 +11,20 @@ interface State {
 }
 
 interface Props {
-  center: {lat: number, lng: number},
-  zoom: number
+  center: { lat: number; lng: number };
+  zoom: number;
 }
 
-class GoogleMaps extends React.Component<Props,State> {
+class GoogleMaps extends React.Component<Props, State> {
   public decodedLevels: [];
 
   constructor(props: any) {
     super(props);
     this.state = {
       error: null,
-      verkeersinformatieJams: [],
-      verkeersinformatieRadars: [],
-      verkeersinformatieRoadworks: []
+      verkeersinformatieJams: [] = [],
+      verkeersinformatieRadars: [] = [],
+      verkeersinformatieRoadworks: [] = []
     };
   }
 
@@ -60,7 +60,6 @@ class GoogleMaps extends React.Component<Props,State> {
           <Marker
             lat={key.fromLoc.lat}
             lng={key.fromLoc.lon}
-            text={key.events.text}
             color="red"
             icon="fas fa-cars"
           />
@@ -76,7 +75,6 @@ class GoogleMaps extends React.Component<Props,State> {
           <Marker
             lat={key.toLoc.lat}
             lng={key.toLoc.lon}
-            text={key.events.text}
             color="blue"
             icon="fas fa-cars"
           />
@@ -92,7 +90,6 @@ class GoogleMaps extends React.Component<Props,State> {
           <Marker
             lat={key.fromLoc.lat}
             lng={key.fromLoc.lon}
-            text={key.events.text}
             color="orange"
             icon="fas fa-tools"
           />
@@ -108,7 +105,6 @@ class GoogleMaps extends React.Component<Props,State> {
           <Marker
             lat={key.toLoc.lat}
             lng={key.toLoc.lon}
-            text={key.events.text}
             color="orange"
             icon="fas fa-tools"
           />
@@ -124,7 +120,6 @@ class GoogleMaps extends React.Component<Props,State> {
           <Marker
             lat={key.fromLoc.lat}
             lng={key.fromLoc.lon}
-            text={key.events.text}
             color="black"
             icon="fas fa-camera"
           />
@@ -140,7 +135,6 @@ class GoogleMaps extends React.Component<Props,State> {
           <Marker
             lat={key.toLoc.lat}
             lng={key.toLoc.lon}
-            text={key.events.text}
             color="black"
             icon="fas fa-camera"
           />
