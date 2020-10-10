@@ -3,7 +3,19 @@ import GoogleMapReact from "google-map-react";
 import Marker from "./GoogleMarker";
 import AnwbData from "../Data/AnwbData";
 
-class GoogleMaps extends React.Component {
+interface State {
+  error: boolean;
+  verkeersinformatieJams: [];
+  verkeersinformatieRadars: [];
+  verkeersinformatieRoadworks: [];
+}
+
+interface Props {
+  center: {lat: number, lng: number},
+  zoom: number
+}
+
+class GoogleMaps extends React.Component<Props,State> {
   public decodedLevels: [];
 
   constructor(props: any) {
@@ -15,6 +27,14 @@ class GoogleMaps extends React.Component {
       verkeersinformatieRoadworks: []
     };
   }
+
+  static defaultProps = {
+    center: {
+      lat: 52.254709,
+      lng: 5.353826
+    },
+    zoom: 8
+  };
 
   public componentDidMount(): void {
     const anwbDataJams = new AnwbData();
@@ -149,7 +169,10 @@ class GoogleMaps extends React.Component {
     return (
       <div style={{ height: "100vh", width: "50%", float: "right" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A", libraries:['geometry'] }}
+          bootstrapURLKeys={{
+            key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A",
+            libraries: ["geometry"]
+          }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals={true}
@@ -165,17 +188,6 @@ class GoogleMaps extends React.Component {
       </div>
     );
   }
-  static defaultProps = {
-    markers: [
-      { lat: 53.42728, lng: -6.24357 },
-      { lat: 43.681583, lng: -79.61146 }
-    ],
-    center: {
-      lat: 52.254709,
-      lng: 5.353826
-    },
-    zoom: 8
-  };
 }
 
 export default GoogleMaps;

@@ -1,19 +1,32 @@
-import React from 'react';
-import './Marker.scss';
+import React, { Component } from "react";
+import "./Marker.scss";
 
-const Marker = (props: any) => {
-    const { color, name, id, icon } = props;
+interface Props {
+  color: string;
+  name: string;
+  icon: string;
+}
+
+class Marker extends Component<Props> {
+  static defaultProps: Props = {
+    color: "",
+    name: "",
+    icon: ""
+  };
+
+  render() {
     return (
       <div>
         <div
           className="pin bounce"
-          style={{ backgroundColor: color, cursor: 'pointer' }}
-          title={name}          
+          style={{ backgroundColor: this.props.color, cursor: "pointer" }}
+          title={name}
         />
-        <i id="fontIcon" className={icon} ></i>
-        <div className="pulse"/>
+        <i id="fontIcon" className={this.props.icon} />
+        <div className="pulse" />
       </div>
     );
-  };
+  }
+}
 
-  export default Marker;
+export default Marker;
