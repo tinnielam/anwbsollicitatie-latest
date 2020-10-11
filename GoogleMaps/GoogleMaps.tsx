@@ -5,9 +5,9 @@ import AnwbData from "../Data/AnwbData";
 
 interface State {
   error: boolean;
-  verkeersinformatieJams: [];
-  verkeersinformatieRadars: [];
-  verkeersinformatieRoadworks: [];
+  verkeersinformatieJams: Array<any>;
+  verkeersinformatieRadars: Array<any>;
+  verkeersinformatieRoadworks: Array<any>;
 }
 
 interface Props {
@@ -22,9 +22,9 @@ class GoogleMaps extends React.Component<Props, State> {
     super(props);
     this.state = {
       error: null,
-      verkeersinformatieJams: [] = [],
-      verkeersinformatieRadars: [] = [],
-      verkeersinformatieRoadworks: [] = []
+      verkeersinformatieJams: [],
+      verkeersinformatieRadars: [],
+      verkeersinformatieRoadworks: []
     };
   }
 
