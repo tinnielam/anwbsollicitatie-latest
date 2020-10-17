@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./Marker.scss";
 
 interface Props {
+  lat: string;
+  lng: string;
   color: string;
   name: string;
   icon: string;
@@ -9,6 +11,8 @@ interface Props {
 
 class Marker extends Component<Props> {
   static defaultProps: Props = {
+    lat: "",
+    lng: "",
     color: "",
     name: "",
     icon: ""
