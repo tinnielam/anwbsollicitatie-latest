@@ -71,14 +71,20 @@ class GoogleMaps extends React.Component<Props, State> {
   private getToLocationJams() {
     return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
-        segments.jams.map((key, index) => (
-          <Marker
-            lat={key.toLoc.lat}
-            lng={key.toLoc.lon}
-            color="blue"
-            icon="fas fa-cars"
-          />
-        ))
+        segments.jams
+          .filter(
+            jams =>
+              typeof jams.toLoc !== "undefined" &&
+              typeof jams.toLoc !== "undefined"
+          )
+          .map(locationJams => (
+            <Marker
+              lat={locationJams.toLoc.lat}
+              lng={locationJams.toLoc.lon}
+              color="blue"
+              icon="fas fa-cars"
+            />
+          ))
       )
     );
   }
