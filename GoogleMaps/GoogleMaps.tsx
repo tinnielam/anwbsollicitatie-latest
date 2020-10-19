@@ -131,6 +131,7 @@ class GoogleMaps extends React.Component<Props, State> {
   }
 
   private getToLocationRadars() {
+    console.log(this.state.verkeersinformatieRadars)
     return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map((key, index) => (
@@ -146,6 +147,7 @@ class GoogleMaps extends React.Component<Props, State> {
   }
 
   private renderPolylines(map, maps): any {
+    console.log(this.state.verkeersinformatieRadars)
     let encoded_data =
       "ohj}Hyd{a@NQx@}BFUJWD@D?DAHK@EBK?O?AAKP_@dAmBBi@rFmM|[cu@pCqGd@eAfLyWl@uAXs@DKRe@`CwFp@qAx@uAdDyFnI{NhBwCx@qAn@cA`CmDp@{@p@s@`KmJnCkCl@k@pDuD~A_BlEmENO`@a@^WNIb@WtBgApCoATIHCLEHCZCh@Ab@Cr@IbAOfASZMx@[VGJCPGb@Oj@In@Ct@Mr@SXUNM";
 
