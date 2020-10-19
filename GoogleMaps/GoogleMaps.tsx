@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./GoogleMarker";
+import Polyline from "./GooglePolyline";
 import AnwbData from "../Data/AnwbData";
 
 interface State {
@@ -25,6 +26,9 @@ class GoogleMaps extends React.Component<Props, State> {
       verkeersinformatieJams: [],
       verkeersinformatieRadars: [],
       verkeersinformatieRoadworks: []
+      mapsLoaded: false,
+      map: null,
+      maps: null
     };
   }
 
@@ -35,6 +39,28 @@ class GoogleMaps extends React.Component<Props, State> {
     },
     zoom: 8
   };
+
+    public onMapLoaded (map, maps) {
+    this.fitBounds(map, maps)
+
+    this.setState({
+      ...this.state,
+      mapsLoaded: true,
+      map: map,
+      maps: maps
+    })
+  }
+
+    public afterMapLoadChanges () {
+    return (
+      <div style={{display: 'none'}}>
+        <Polyline
+          map={this.state.map}
+          maps={this.state.maps}
+          markers={this.props.markers} />
+      </div>
+    )
+  }
 
   public componentDidMount(): void {
     const anwbDataJams = new AnwbData();
@@ -131,7 +157,6 @@ class GoogleMaps extends React.Component<Props, State> {
   }
 
   private getToLocationRadars() {
-    console.log(this.state.verkeersinformatieRadars)
     return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map((key, index) => (
@@ -146,22 +171,22 @@ class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
-  private renderPolylines(map, maps): any {
-    console.log(this.state.verkeersinformatieRadars)
-    let encoded_data =
-      "ohj}Hyd{a@NQx@}BFUJWD@D?DAHK@EBK?O?AAKP_@dAmBBi@rFmM|[cu@pCqGd@eAfLyWl@uAXs@DKRe@`CwFp@qAx@uAdDyFnI{NhBwCx@qAn@cA`CmDp@{@p@s@`KmJnCkCl@k@pDuD~A_BlEmENO`@a@^WNIb@WtBgApCoATIHCLEHCZCh@Ab@Cr@IbAOfASZMx@[VGJCPGb@Oj@In@Ct@Mr@SXUNM";
+  // private renderPolylines(map, maps): any {
+  //   console.log(this.state.verkeersinformatieRadars);
+  //   let encoded_data =
+  //     "ohj}Hyd{a@NQx@}BFUJWD@D?DAHK@EBK?O?AAKP_@dAmBBi@rFmM|[cu@pCqGd@eAfLyWl@uAXs@DKRe@`CwFp@qAx@uAdDyFnI{NhBwCx@qAn@cA`CmDp@{@p@s@`KmJnCkCl@k@pDuD~A_BlEmENO`@a@^WNIb@WtBgApCoATIHCLEHCZCh@Ab@Cr@IbAOfASZMx@[VGJCPGb@Oj@In@Ct@Mr@SXUNM";
 
-    let decode = google.maps.geometry.encoding.decodePath(encoded_data);
+  //   let decode = google.maps.geometry.encoding.decodePath(encoded_data);
 
-    let geodesicPolyline = new maps.Polyline({
-      path: decode,
-      geodesic: true,
-      strokeColor: "#00a1e1",
-      strokeOpacity: 1.0,
-      strokeWeight: 4
-    });
-    geodesicPolyline.setMap(map);
-  }
+  //   let geodesicPolyline = new maps.Polyline({
+  //     path: decode,
+  //     geodesic: true,
+  //     strokeColor: "#00a1e1",
+  //     strokeOpacity: 1.0,
+  //     strokeWeight: 4
+  //   });
+  //   geodesicPolyline.setMap(map);
+  // }
 
   render() {
     return (
@@ -174,7 +199,9 @@ class GoogleMaps extends React.Component<Props, State> {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals={true}
-          onGoogleApiLoaded={({ map, maps }) => this.renderPolylines(map, maps)}
+          onGoogleApiLoaded={({map, maps}) => this.onMapLoaded(map, maps)}
+          //onGoogleApiLoaded={({ map, maps }) => this.renderPolylines(map, maps)}
+          {this.state.mapsLoaded ? this.afterMapLoadChanges() : ''}
         >
           {this.getFromLocationJams()}
           {this.getToLocationJams()}
