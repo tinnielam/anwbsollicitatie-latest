@@ -9,11 +9,15 @@ interface State {
   verkeersinformatieJams: Array<any>;
   verkeersinformatieRadars: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
+  mapsLoaded: boolean
+  map: any,
+  maps: any
 }
 
 interface Props {
   center: { lat: number; lng: number };
   zoom: number;
+  markers: Array<any>;
 }
 
 class GoogleMaps extends React.Component<Props, State> {
@@ -25,7 +29,7 @@ class GoogleMaps extends React.Component<Props, State> {
       error: null,
       verkeersinformatieJams: [],
       verkeersinformatieRadars: [],
-      verkeersinformatieRoadworks: []
+      verkeersinformatieRoadworks: [],
       mapsLoaded: false,
       map: null,
       maps: null
@@ -33,12 +37,26 @@ class GoogleMaps extends React.Component<Props, State> {
   }
 
   static defaultProps = {
+      markers: [
+    {lat: 53.42728, lng: -6.24357},
+    {lat: 43.681583, lng: -79.61146}
+    ],
     center: {
       lat: 52.254709,
       lng: 5.353826
     },
     zoom: 8
   };
+
+    fitBounds (map, maps) {
+    var bounds = new maps.LatLngBounds()
+    for (let marker of this.props.markers) {
+      bounds.extend(
+        new maps.LatLng(marker.lat, marker.lng)
+      )
+    }
+    map.fitBounds(bounds)
+  }
 
     public onMapLoaded (map, maps) {
     this.fitBounds(map, maps)
