@@ -9,21 +9,21 @@ interface State {
   verkeersinformatieJams: Array<any>;
   verkeersinformatieRadars: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
-  mapsLoaded: boolean
-  map: any,
-  maps: any
+  mapsLoaded: boolean;
+  map: any;
+  maps: any;
 }
 
 interface Props {
   center: { lat: number; lng: number };
   zoom: number;
-  markers: Array<any>;
+  markers: [{ lat: number; lng: number }];
 }
 
 class GoogleMaps extends React.Component<Props, State> {
   public decodedLevels: [];
 
-  constructor(props: any) {
+  constructor(props) {
     super(props);
     this.state = {
       error: null,
@@ -37,9 +37,9 @@ class GoogleMaps extends React.Component<Props, State> {
   }
 
   static defaultProps = {
-      markers: [
-    {lat: 53.42728, lng: -6.24357},
-    {lat: 43.681583, lng: -79.61146}
+    markers: [
+      { lat: 53.42728, lng: -6.24357 },
+      { lat: 43.681583, lng: -79.61146 }
     ],
     center: {
       lat: 52.254709,
@@ -48,36 +48,25 @@ class GoogleMaps extends React.Component<Props, State> {
     zoom: 8
   };
 
-    fitBounds (map, maps) {
-    var bounds = new maps.LatLngBounds()
-    for (let marker of this.props.markers) {
-      bounds.extend(
-        new maps.LatLng(marker.lat, marker.lng)
-      )
-    }
-    map.fitBounds(bounds)
-  }
-
-    public onMapLoaded (map, maps) {
-    this.fitBounds(map, maps)
-
+  private onMapLoaded(map, maps) {
     this.setState({
       ...this.state,
       mapsLoaded: true,
       map: map,
       maps: maps
-    })
+    });
   }
 
-    public afterMapLoadChanges () {
+  private afterMapLoadChanges() {
     return (
-      <div style={{display: 'none'}}>
+      <div style={{ display: "none" }}>
         <Polyline
           map={this.state.map}
           maps={this.state.maps}
-          markers={this.props.markers} />
+          markers={this.props.markers}
+        />
       </div>
-    )
+    );
   }
 
   public componentDidMount(): void {
@@ -217,10 +206,10 @@ class GoogleMaps extends React.Component<Props, State> {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals={true}
-          onGoogleApiLoaded={({map, maps}) => this.onMapLoaded(map, maps)}
+          onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
           //onGoogleApiLoaded={({ map, maps }) => this.renderPolylines(map, maps)}
-          {this.state.mapsLoaded ? this.afterMapLoadChanges() : ''}
         >
+          {...(this.state.mapsLoaded ? this.afterMapLoadChanges() : "")}
           {this.getFromLocationJams()}
           {this.getToLocationJams()}
           {this.getFromLocationRadars()}

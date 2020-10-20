@@ -1,19 +1,19 @@
 import { Component } from "react";
 
 interface Props {
-  markers: string;
+  markers: Array<any>;
   map: any;
   maps: any;
 }
 
 export default class Polyline extends Component<Props> {
   static defaultProps: Props = {
-    markers: "",
+    markers: [],
     maps: "",
     map: ""
   };
 
-  renderPolylines() {
+  public renderPolylines() {
     let geodesicPolyline = new this.props.maps.Polyline({
       path: this.props.markers,
       geodesic: true,
