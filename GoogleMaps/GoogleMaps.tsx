@@ -92,6 +92,7 @@ class GoogleMaps extends React.Component<Props, State> {
             lng={key.fromLoc.lon}
             color="red"
             icon="fas fa-cars"
+            name="text"
           />
         ))
       )
@@ -109,6 +110,7 @@ class GoogleMaps extends React.Component<Props, State> {
               lng={locationJams.toLoc.lon}
               color="blue"
               icon="fas fa-cars"
+              name="text"
             />
           ))
       )
@@ -124,6 +126,7 @@ class GoogleMaps extends React.Component<Props, State> {
             lng={key.fromLoc.lon}
             color="orange"
             icon="fas fa-tools"
+            name="text"
           />
         ))
       )
@@ -139,6 +142,7 @@ class GoogleMaps extends React.Component<Props, State> {
             lng={key.toLoc.lon}
             color="orange"
             icon="fas fa-tools"
+            name="text"
           />
         ))
       )
@@ -154,6 +158,7 @@ class GoogleMaps extends React.Component<Props, State> {
             lng={key.fromLoc.lon}
             color="black"
             icon="fas fa-camera"
+            name="text"
           />
         ))
       )
@@ -169,6 +174,7 @@ class GoogleMaps extends React.Component<Props, State> {
             lng={key.toLoc.lon}
             color="black"
             icon="fas fa-camera"
+            name="text"
           />
         ))
       )
