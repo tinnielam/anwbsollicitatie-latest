@@ -57,14 +57,16 @@ class GoogleMaps extends React.Component<Props, State> {
   }
 
   private afterMapLoadChanges() {
+    let encoded_data =
+      "ohj}Hyd{a@NQx@}BFUJWD@D?DAHK@EBK?O?AAKP_@dAmBBi@rFmM|[cu@pCqGd@eAfLyWl@uAXs@DKRe@`CwFp@qAx@uAdDyFnI{NhBwCx@qAn@cA`CmDp@{@p@s@`KmJnCkCl@k@pDuD~A_BlEmENO`@a@^WNIb@WtBgApCoATIHCLEHCZCh@Ab@Cr@IbAOfASZMx@[VGJCPGb@Oj@In@Ct@Mr@SXUNM";
+
+    let decode = google.maps.geometry.encoding.decodePath(encoded_data);
     return (
-      <div style={{ display: "none" }}>
-        <Polyline
-          map={this.state.map}
-          maps={this.state.maps}
-          markers={this.props.markers}
-        />
-      </div>
+      <Polyline
+        map={this.state.map}
+        maps={this.state.maps}
+        markers={decode}
+      />
     );
   }
 
@@ -176,23 +178,6 @@ class GoogleMaps extends React.Component<Props, State> {
       )
     );
   }
-
-  // private renderPolylines(map, maps): any {
-  //   console.log(this.state.verkeersinformatieRadars);
-  //   let encoded_data =
-  //     "ohj}Hyd{a@NQx@}BFUJWD@D?DAHK@EBK?O?AAKP_@dAmBBi@rFmM|[cu@pCqGd@eAfLyWl@uAXs@DKRe@`CwFp@qAx@uAdDyFnI{NhBwCx@qAn@cA`CmDp@{@p@s@`KmJnCkCl@k@pDuD~A_BlEmENO`@a@^WNIb@WtBgApCoATIHCLEHCZCh@Ab@Cr@IbAOfASZMx@[VGJCPGb@Oj@In@Ct@Mr@SXUNM";
-
-  //   let decode = google.maps.geometry.encoding.decodePath(encoded_data);
-
-  //   let geodesicPolyline = new maps.Polyline({
-  //     path: decode,
-  //     geodesic: true,
-  //     strokeColor: "#00a1e1",
-  //     strokeOpacity: 1.0,
-  //     strokeWeight: 4
-  //   });
-  //   geodesicPolyline.setMap(map);
-  // }
 
   render() {
     return (

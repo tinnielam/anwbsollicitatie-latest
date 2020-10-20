@@ -7,12 +7,6 @@ interface Props {
 }
 
 export default class Polyline extends Component<Props> {
-  static defaultProps: Props = {
-    markers: [],
-    maps: "",
-    map: ""
-  };
-
   public renderPolylines() {
     let geodesicPolyline = new this.props.maps.Polyline({
       path: this.props.markers,

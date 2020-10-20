@@ -10,14 +10,6 @@ interface Props {
 }
 
 class Marker extends Component<Props> {
-  static defaultProps: Props = {
-    lat: "",
-    lng: "",
-    color: "",
-    name: "",
-    icon: ""
-  };
-
   render() {
     return (
       <div>
