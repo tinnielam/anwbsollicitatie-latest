@@ -1,7 +1,7 @@
 import { Component } from "react";
 
 interface Props {
-  markers: Array<any>;
+  markers: Array<object>;
   map: any;
   maps: any;
 }

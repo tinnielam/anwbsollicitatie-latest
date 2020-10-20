@@ -9,7 +9,6 @@ interface State {
   verkeersinformatieJams: Array<any>;
   verkeersinformatieRadars: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
-  mapsLoaded: boolean;
   map: object;
   maps: object;
 }
@@ -21,8 +20,6 @@ interface Props {
 }
 
 export default class GoogleMaps extends React.Component<Props, State> {
-  public decodedLevels: [];
-
   constructor(props) {
     super(props);
     this.state = {
@@ -30,17 +27,12 @@ export default class GoogleMaps extends React.Component<Props, State> {
       verkeersinformatieJams: [],
       verkeersinformatieRadars: [],
       verkeersinformatieRoadworks: [],
-      mapsLoaded: false,
       map: null,
       maps: null
     };
   }
 
   static defaultProps = {
-    markers: [
-      { lat: 53.42728, lng: -6.24357 },
-      { lat: 43.681583, lng: -79.61146 }
-    ],
     center: {
       lat: 52.254709,
       lng: 5.353826
@@ -149,7 +141,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
 
   private onMapLoaded(map, maps) {
     this.setState({
-      mapsLoaded: true,
       map: map,
       maps: maps
     });
@@ -173,7 +164,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
-  private afterMapLoadChanges() {
+  private verkeersinformatiePolylineJams() {
     return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams
@@ -204,7 +195,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
-          {this.state.mapsLoaded ? this.afterMapLoadChanges() : ""}
+          {this.verkeersinformatiePolylineJams()}
           {this.verkeersinformatiePolylineRoadworks()}
           {this.getFromLocationJams()}
           {this.getToLocationJams()}
