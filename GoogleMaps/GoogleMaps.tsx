@@ -10,8 +10,8 @@ interface State {
   verkeersinformatieRadars: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
   mapsLoaded: boolean;
-  map: any;
-  maps: any;
+  map: object;
+  maps: object;
 }
 
 interface Props {
@@ -174,14 +174,17 @@ export default class GoogleMaps extends React.Component<Props, State> {
   private afterMapLoadChanges() {
     return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
-        segments.jams.filter(jams => typeof jams.polyline !== "undefined")
+        segments.jams
+          .filter(jams => typeof jams.polyline !== "undefined")
           .map(locationJams => (
-          <Polyline
-            map={this.state.map}
-            maps={this.state.maps}
-            markers={google.maps.geometry.encoding.decodePath(locationJams.polyline)}
-          />
-        ))
+            <Polyline
+              map={this.state.map}
+              maps={this.state.maps}
+              markers={google.maps.geometry.encoding.decodePath(
+                locationJams.polyline
+              )}
+            />
+          ))
       )
     );
   }
