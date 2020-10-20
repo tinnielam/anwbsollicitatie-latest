@@ -131,22 +131,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
-  private getFromLocationRadars() {
-    return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.radars.map((key, index) => (
-          <Marker
-            lat={key.fromLoc.lat}
-            lng={key.fromLoc.lon}
-            color="black"
-            icon="fas fa-camera"
-            name="text"
-          />
-        ))
-      )
-    );
-  }
-
   private getToLocationRadars() {
     return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
@@ -224,7 +208,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
           {this.verkeersinformatiePolylineRoadworks()}
           {this.getFromLocationJams()}
           {this.getToLocationJams()}
-          {this.getFromLocationRadars()}
           {this.getToLocationRadars()}
           {this.getFromLocationRoadworks()}
           {this.getToLocationRoadworks()}
