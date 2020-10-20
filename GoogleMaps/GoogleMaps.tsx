@@ -50,7 +50,6 @@ class GoogleMaps extends React.Component<Props, State> {
 
   private onMapLoaded(map, maps) {
     this.setState({
-      ...this.state,
       mapsLoaded: true,
       map: map,
       maps: maps
@@ -207,9 +206,8 @@ class GoogleMaps extends React.Component<Props, State> {
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
-          //onGoogleApiLoaded={({ map, maps }) => this.renderPolylines(map, maps)}
         >
-          {...(this.state.mapsLoaded ? this.afterMapLoadChanges() : "")}
+          {this.state.mapsLoaded ? this.afterMapLoadChanges() : ""}
           {this.getFromLocationJams()}
           {this.getToLocationJams()}
           {this.getFromLocationRadars()}
