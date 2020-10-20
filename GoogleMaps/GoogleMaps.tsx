@@ -172,13 +172,14 @@ export default class GoogleMaps extends React.Component<Props, State> {
   }
 
   private afterMapLoadChanges() {
-    this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
+    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
-        segments.roadworks.map((key, index) => (
+        segments.jams.filter(jams => typeof jams.polyline !== "undefined")
+          .map(locationJams => (
           <Polyline
             map={this.state.map}
             maps={this.state.maps}
-            markers={google.maps.geometry.encoding.decodePath(key.polyline)}
+            markers={google.maps.geometry.encoding.decodePath(locationJams.polyline)}
           />
         ))
       )
