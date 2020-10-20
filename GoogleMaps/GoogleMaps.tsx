@@ -62,11 +62,7 @@ class GoogleMaps extends React.Component<Props, State> {
 
     let decode = google.maps.geometry.encoding.decodePath(encoded_data);
     return (
-      <Polyline
-        map={this.state.map}
-        maps={this.state.maps}
-        markers={decode}
-      />
+      <Polyline map={this.state.map} maps={this.state.maps} markers={decode} />
     );
   }
 

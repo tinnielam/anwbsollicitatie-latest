@@ -9,7 +9,15 @@ interface Props {
   icon: string;
 }
 
-class Marker extends Component<Props> {
+export default class Marker extends Component<Props> {
+  static defaultProps: Props = {
+    lat: "",
+    lng: "",
+    color: "",
+    name: "",
+    icon: ""
+  };
+
   render() {
     return (
       <div>
@@ -24,5 +32,3 @@ class Marker extends Component<Props> {
     );
   }
 }
-
-export default Marker;
