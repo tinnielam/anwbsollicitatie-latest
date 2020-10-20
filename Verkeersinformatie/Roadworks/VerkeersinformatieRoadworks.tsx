@@ -1,7 +1,7 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-class VerkeersinformatieRoadworks extends React.Component {
+export default class VerkeersinformatieRoadworks extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -40,7 +40,6 @@ class VerkeersinformatieRoadworks extends React.Component {
         <th>Rijksweg</th>
         <th>Route</th>
         <th>Reden</th>
-
       </tr>
     );
   }
@@ -59,5 +58,3 @@ class VerkeersinformatieRoadworks extends React.Component {
     );
   }
 }
-
-export default VerkeersinformatieRoadworks;

@@ -1,4 +1,4 @@
-class AnwbData {
+export default class AnwbData {
   async getAnwbData(type: string): Promise<[]> {
     return await fetch(
       `https://anwbtinlam.tinlam.repl.co/verkeersinformatie${type}`
@@ -7,5 +7,3 @@ class AnwbData {
       .then(res => res.map((data: any) => data));
   }
 }
-
-export default AnwbData;

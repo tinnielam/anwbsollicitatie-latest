@@ -1,7 +1,7 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-class VerkeersinformatieJams extends React.Component {
+export default class VerkeersinformatieJams extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -40,7 +40,7 @@ class VerkeersinformatieJams extends React.Component {
   }
 
   private renderTableHeaderJams(): JSX.Element {
-    return (      
+    return (
       <tr>
         <th>Rijksweg</th>
         <th>Traject</th>
@@ -66,5 +66,3 @@ class VerkeersinformatieJams extends React.Component {
     );
   }
 }
-
-export default VerkeersinformatieJams;

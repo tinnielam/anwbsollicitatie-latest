@@ -20,7 +20,7 @@ interface Props {
   markers: [{ lat: number; lng: number }];
 }
 
-class GoogleMaps extends React.Component<Props, State> {
+export default class GoogleMaps extends React.Component<Props, State> {
   public decodedLevels: [];
 
   constructor(props) {
@@ -206,5 +206,3 @@ class GoogleMaps extends React.Component<Props, State> {
     );
   }
 }
-
-export default GoogleMaps;

@@ -1,7 +1,7 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-class VerkeersinformatieRadars extends React.Component {
+export default class VerkeersinformatieRadars extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -62,5 +62,3 @@ class VerkeersinformatieRadars extends React.Component {
     );
   }
 }
-
-export default VerkeersinformatieRadars;
