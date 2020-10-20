@@ -48,24 +48,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
     zoom: 8
   };
 
-  private onMapLoaded(map, maps) {
-    this.setState({
-      mapsLoaded: true,
-      map: map,
-      maps: maps
-    });
-  }
-
-  private afterMapLoadChanges() {
-    let encoded_data =
-      "ohj}Hyd{a@NQx@}BFUJWD@D?DAHK@EBK?O?AAKP_@dAmBBi@rFmM|[cu@pCqGd@eAfLyWl@uAXs@DKRe@`CwFp@qAx@uAdDyFnI{NhBwCx@qAn@cA`CmDp@{@p@s@`KmJnCkCl@k@pDuD~A_BlEmENO`@a@^WNIb@WtBgApCoATIHCLEHCZCh@Ab@Cr@IbAOfASZMx@[VGJCPGb@Oj@In@Ct@Mr@SXUNM";
-
-    let decode = google.maps.geometry.encoding.decodePath(encoded_data);
-    return (
-      <Polyline map={this.state.map} maps={this.state.maps} markers={decode} />
-    );
-  }
-
   public componentDidMount(): void {
     const anwbDataJams = new AnwbData();
     anwbDataJams
@@ -175,6 +157,28 @@ export default class GoogleMaps extends React.Component<Props, State> {
             color="black"
             icon="fas fa-camera"
             name="text"
+          />
+        ))
+      )
+    );
+  }
+
+  private onMapLoaded(map, maps) {
+    this.setState({
+      mapsLoaded: true,
+      map: map,
+      maps: maps
+    });
+  }
+
+  private afterMapLoadChanges() {
+    this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.roadworks.map((key, index) => (
+          <Polyline
+            map={this.state.map}
+            maps={this.state.maps}
+            markers={google.maps.geometry.encoding.decodePath(key.polyline)}
           />
         ))
       )
