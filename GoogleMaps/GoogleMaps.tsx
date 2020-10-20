@@ -171,6 +171,24 @@ export default class GoogleMaps extends React.Component<Props, State> {
     });
   }
 
+  private verkeersinformatiePolylineRoadworks() {
+    return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.roadworks
+          .filter(roadworks => typeof roadworks.polyline !== "undefined")
+          .map(locationRoadworks => (
+            <Polyline
+              map={this.state.map}
+              maps={this.state.maps}
+              markers={google.maps.geometry.encoding.decodePath(
+                locationRoadworks.polyline
+              )}
+            />
+          ))
+      )
+    );
+  }
+
   private afterMapLoadChanges() {
     return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
@@ -203,6 +221,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
           {this.state.mapsLoaded ? this.afterMapLoadChanges() : ""}
+          {this.verkeersinformatiePolylineRoadworks()}
           {this.getFromLocationJams()}
           {this.getToLocationJams()}
           {this.getFromLocationRadars()}
