@@ -50,6 +50,7 @@ class GoogleMaps extends React.Component<Props, State> {
 
   private onMapLoaded(map, maps) {
     this.setState({
+      ...this.state,
       mapsLoaded: true,
       map: map,
       maps: maps
