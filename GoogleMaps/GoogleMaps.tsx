@@ -16,7 +16,6 @@ interface State {
 interface Props {
   center: { lat: number; lng: number };
   zoom: number;
-  markers: [{ lat: number; lng: number }];
 }
 
 export default class GoogleMaps extends React.Component<Props, State> {
