@@ -1,8 +1,12 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-export default class VerkeersinformatieJams extends React.Component {
-  constructor(props: any) {
+interface State {
+  verkeersinformatie: Array<any>;
+}
+
+export default class VerkeersinformatieJams extends React.Component<State> {
+  constructor(props) {
     super(props);
     this.state = {
       verkeersinformatie: []
