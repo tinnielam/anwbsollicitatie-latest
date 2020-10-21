@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./GoogleMarker";
 import Polyline from "./GooglePolyline";
 import AnwbData from "../Data/AnwbData";
 
 interface State {
-  error: boolean;
   verkeersinformatieJams: Array<any>;
   verkeersinformatieRadars: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
@@ -19,10 +18,9 @@ interface Props {
 }
 
 export default class GoogleMaps extends React.Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      error: null,
       verkeersinformatieJams: [],
       verkeersinformatieRadars: [],
       verkeersinformatieRoadworks: [],
