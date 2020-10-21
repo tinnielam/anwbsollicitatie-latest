@@ -97,8 +97,8 @@ export default class GoogleMaps extends React.Component<Props, State> {
       verkeersinformatie.segments.map(segments =>
         segments.radars.map((key, index) => (
           <Marker
-            lat={key.toLoc.lat}
-            lng={key.toLoc.lon}
+            lat={key.fromLoc.lat}
+            lng={key.fromLoc.lon}
             color="black"
             icon="fas fa-camera"
             name="text"
