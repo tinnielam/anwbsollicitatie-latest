@@ -56,31 +56,19 @@ export default class GoogleMaps extends React.Component<Props, State> {
       .then(data => this.setState({ verkeersinformatieRadars: data }));
   }
 
-  private getFromLocationJams() {
-    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.jams.map((key, index) => (
-          <Marker
-            lat={key.fromLoc.lat}
-            lng={key.fromLoc.lon}
-            color="red"
-            icon="fas fa-cars"
-            name="text"
-          />
-        ))
-      )
-    );
-  }
-
   private getToLocationJams() {
     return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams
-          .filter(jams => typeof jams.toLoc !== "undefined")
+          .filter(
+            jams =>
+              typeof jams.toLoc !== "undefined" &&
+              typeof jams.fromLoc !== "undefined"
+          )
           .map(locationJams => (
             <Marker
-              lat={locationJams.toLoc.lat}
-              lng={locationJams.toLoc.lon}
+              lat={locationJams.toLoc.lat && locationJams.fromLoc.lat}
+              lng={locationJams.toLoc.lon && locationJams.fromLoc.lon}
               color="blue"
               icon="fas fa-cars"
               name="text"
@@ -90,29 +78,13 @@ export default class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
-  private getFromLocationRoadworks() {
-    return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.roadworks.map((key, index) => (
-          <Marker
-            lat={key.fromLoc.lat}
-            lng={key.fromLoc.lon}
-            color="orange"
-            icon="fas fa-tools"
-            name="text"
-          />
-        ))
-      )
-    );
-  }
-
   private getToLocationRoadworks() {
     return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks.map((key, index) => (
           <Marker
-            lat={key.toLoc.lat}
-            lng={key.toLoc.lon}
+            lat={key.toLoc.lat && key.fromLoc.lat}
+            lng={key.toLoc.lon && key.fromLoc.lon}
             color="orange"
             icon="fas fa-tools"
             name="text"
@@ -154,6 +126,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
             <Polyline
               map={this.state.map}
               maps={this.state.maps}
+              polylineColor="grey"
               markers={google.maps.geometry.encoding.decodePath(
                 locationRoadworks.polyline
               )}
@@ -172,6 +145,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
             <Polyline
               map={this.state.map}
               maps={this.state.maps}
+              polylineColor="orange"
               markers={google.maps.geometry.encoding.decodePath(
                 locationJams.polyline
               )}
@@ -196,10 +170,8 @@ export default class GoogleMaps extends React.Component<Props, State> {
         >
           {this.verkeersinformatiePolylineJams()}
           {this.verkeersinformatiePolylineRoadworks()}
-          {this.getFromLocationJams()}
           {this.getToLocationJams()}
           {this.getToLocationRadars()}
-          {this.getFromLocationRoadworks()}
           {this.getToLocationRoadworks()}
         </GoogleMapReact>
       </div>

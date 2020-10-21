@@ -4,6 +4,7 @@ interface Props {
   markers: Array<object>;
   map: any;
   maps: any;
+  polylineColor: string;
 }
 
 export default class Polyline extends Component<Props> {
@@ -11,9 +12,9 @@ export default class Polyline extends Component<Props> {
     let geodesicPolyline = new this.props.maps.Polyline({
       path: this.props.markers,
       geodesic: true,
-      strokeColor: "#00a1e1",
-      strokeOpacity: 1.0,
-      strokeWeight: 4
+      strokeColor: this.props.polylineColor,
+      strokeOpacity: 0.6,
+      strokeWeight: 3
     });
     geodesicPolyline.setMap(this.props.map);
   }
