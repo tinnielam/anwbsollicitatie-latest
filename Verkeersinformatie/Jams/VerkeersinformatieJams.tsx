@@ -5,8 +5,6 @@ export default class VerkeersinformatieJams extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
       verkeersinformatie: []
     };
   }

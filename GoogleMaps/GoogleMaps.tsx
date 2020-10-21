@@ -37,7 +37,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
     zoom: 8
   };
 
-  public hoi(): void {
+  public componentDidMount(): void {
     const anwbDataJams = new AnwbData();
     anwbDataJams
       .getAnwbData("jams")
