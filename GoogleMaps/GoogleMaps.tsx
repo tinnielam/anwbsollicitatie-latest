@@ -61,16 +61,27 @@ export default class GoogleMaps extends React.Component<Props, State> {
           .filter(
             jams =>
               typeof jams.toLoc !== "undefined" &&
-              typeof jams.fromLoc !== "undefined"
+              typeof jams.fromLoc !== "undefined" &&
+              typeof jams.polyline !== "undefined"
           )
           .map(locationJams => (
-            <Marker
-              lat={locationJams.toLoc.lat && locationJams.fromLoc.lat}
-              lng={locationJams.toLoc.lon && locationJams.fromLoc.lon}
-              color="blue"
-              icon="fas fa-cars"
-              name="text"
-            />
+            <React.Fragment>
+              <Marker
+                lat={locationJams.toLoc.lat && locationJams.fromLoc.lat}
+                lng={locationJams.toLoc.lon && locationJams.fromLoc.lon}
+                color="blue"
+                icon="fas fa-cars"
+                name="text"
+              />
+              <Polyline
+                map={this.state.map}
+                maps={this.state.maps}
+                polylineColor="orange"
+                markers={google.maps.geometry.encoding.decodePath(
+                  locationJams.polyline
+                )}
+              />
+            </React.Fragment>
           ))
       )
     );
@@ -79,15 +90,31 @@ export default class GoogleMaps extends React.Component<Props, State> {
   private getToLocationRoadworks() {
     return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
-        segments.roadworks.map((key, index) => (
-          <Marker
-            lat={key.toLoc.lat && key.fromLoc.lat}
-            lng={key.toLoc.lon && key.fromLoc.lon}
-            color="orange"
-            icon="fas fa-tools"
-            name="text"
-          />
-        ))
+        segments.roadworks
+          .filter(roadworks => typeof roadworks.polyline !== "undefined")
+          .map(locationRoadworks => (
+            <React.Fragment>
+              <Marker
+                lat={
+                  locationRoadworks.toLoc.lat && locationRoadworks.fromLoc.lat
+                }
+                lng={
+                  locationRoadworks.toLoc.lon && locationRoadworks.fromLoc.lon
+                }
+                color="orange"
+                icon="fas fa-tools"
+                name="text"
+              />
+              <Polyline
+                map={this.state.map}
+                maps={this.state.maps}
+                polylineColor="grey"
+                markers={google.maps.geometry.encoding.decodePath(
+                  locationRoadworks.polyline
+                )}
+              />
+            </React.Fragment>
+          ))
       )
     );
   }
@@ -115,44 +142,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
     });
   }
 
-  private verkeersinformatiePolylineRoadworks() {
-    return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.roadworks
-          .filter(roadworks => typeof roadworks.polyline !== "undefined")
-          .map(locationRoadworks => (
-            <Polyline
-              map={this.state.map}
-              maps={this.state.maps}
-              polylineColor="grey"
-              markers={google.maps.geometry.encoding.decodePath(
-                locationRoadworks.polyline
-              )}
-            />
-          ))
-      )
-    );
-  }
-
-  private verkeersinformatiePolylineJams() {
-    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.jams
-          .filter(jams => typeof jams.polyline !== "undefined")
-          .map(locationJams => (
-            <Polyline
-              map={this.state.map}
-              maps={this.state.maps}
-              polylineColor="orange"
-              markers={google.maps.geometry.encoding.decodePath(
-                locationJams.polyline
-              )}
-            />
-          ))
-      )
-    );
-  }
-
   render() {
     return (
       <div style={{ height: "100vh", width: "50%", float: "right" }}>
@@ -166,8 +155,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
-          {this.verkeersinformatiePolylineJams()}
-          {this.verkeersinformatiePolylineRoadworks()}
           {this.getToLocationJams()}
           {this.getToLocationRadars()}
           {this.getToLocationRoadworks()}
