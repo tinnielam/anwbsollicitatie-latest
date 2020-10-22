@@ -54,44 +54,16 @@ export default class GoogleMaps extends React.Component<Props, State> {
       .then(data => this.setState({ verkeersinformatieRadars: data }));
   }
 
-  private getToLocationJams() {
-    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.jams
-          .filter(
-            jams =>
-              typeof jams.toLoc !== "undefined" &&
-              typeof jams.fromLoc !== "undefined" &&
-              typeof jams.polyline !== "undefined"
-          )
-          .map(locationJams => (
-            <React.Fragment>
-              <Marker
-                lat={locationJams.toLoc.lat && locationJams.fromLoc.lat}
-                lng={locationJams.toLoc.lon && locationJams.fromLoc.lon}
-                color="blue"
-                icon="fas fa-cars"
-                name="text"
-              />
-              <Polyline
-                map={this.state.map}
-                maps={this.state.maps}
-                polylineColor="orange"
-                markers={google.maps.geometry.encoding.decodePath(
-                  locationJams.polyline
-                )}
-              />
-            </React.Fragment>
-          ))
-      )
-    );
-  }
-
   private getToLocationRoadworks() {
     return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks
-          .filter(roadworks => typeof roadworks.polyline !== "undefined")
+          .filter(
+            roadworks =>
+              typeof roadworks.polyline !== "undefined" &&
+              typeof roadworks.fromLoc !== "undefined" &&
+              typeof roadworks.toLoc !== "undefined"
+          )
           .map(locationRoadworks => (
             <React.Fragment>
               <Marker
@@ -108,7 +80,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
               <Polyline
                 map={this.state.map}
                 maps={this.state.maps}
-                polylineColor="grey"
+                polylineColor="blue"
                 markers={google.maps.geometry.encoding.decodePath(
                   locationRoadworks.polyline
                 )}

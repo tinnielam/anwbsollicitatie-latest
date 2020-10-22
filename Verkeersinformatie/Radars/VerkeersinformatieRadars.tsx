@@ -1,12 +1,19 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-export default class VerkeersinformatieRadars extends React.Component {
-  constructor(props: any) {
+interface State {
+  verkeersinformatie: Array<any>;
+}
+
+interface Props {}
+
+export default class VerkeersinformatieRadars extends React.Component<
+  Props,
+  State
+> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
       verkeersinformatie: []
     };
   }
@@ -18,7 +25,7 @@ export default class VerkeersinformatieRadars extends React.Component {
       .then(data => this.setState({ verkeersinformatie: data }));
   }
 
-  private renderTableDataRadars(): JSX.Element {
+  private renderTableDataRadars(): Array<string> {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map((key, index) => (
@@ -37,7 +44,7 @@ export default class VerkeersinformatieRadars extends React.Component {
     );
   }
 
-  private renderTableHeaderRadars(): JSX.Element {
+  private renderTableHeaderRadars() {
     return (
       <tr>
         <th>Rijksweg</th>
