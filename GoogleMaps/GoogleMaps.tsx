@@ -69,8 +69,8 @@ export default class GoogleMaps extends React.Component<Props, State> {
               lat={locationRoadworks.toLoc.lat && locationRoadworks.fromLoc.lat}
               lng={locationRoadworks.toLoc.lon && locationRoadworks.fromLoc.lon}
               color="orange"
-              className="pin roadworks bounce"
               name="text"
+              icon="\f7d9"
             />
           ))
       )
@@ -92,8 +92,8 @@ export default class GoogleMaps extends React.Component<Props, State> {
               lat={locationJams.toLoc.lat && locationJams.fromLoc.lat}
               lng={locationJams.toLoc.lon && locationJams.fromLoc.lon}
               color="blue"
-              className="pin bounce"
               name="text"
+              icon="\f85b"
             />
           ))
       )
@@ -108,8 +108,8 @@ export default class GoogleMaps extends React.Component<Props, State> {
             lat={key.fromLoc.lat}
             lng={key.fromLoc.lon}
             color="black"
-            className="pin bounce"
             name="text"
+            icon="\f030"
           />
         ))
       )
