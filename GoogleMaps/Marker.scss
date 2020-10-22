@@ -1,4 +1,21 @@
-.pin:after {
+.pin.roadworks:after {
+  content: "\f7d9";
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  font-size: 25px;
+  margin: -20px 0 0 -20px;
+}
+
+.pin.jams:after {
+  content: "\f85b";
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  font-size: 25px;
+  margin: -20px 0 0 -20px;
+}
+
+.pin.radars:after {
+  content: "\f030";
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
   font-size: 25px;

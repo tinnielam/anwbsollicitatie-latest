@@ -68,9 +68,9 @@ export default class GoogleMaps extends React.Component<Props, State> {
             <Marker
               lat={locationRoadworks.toLoc.lat && locationRoadworks.fromLoc.lat}
               lng={locationRoadworks.toLoc.lon && locationRoadworks.fromLoc.lon}
-              color="orange"
+              color="#484848"
+              className="pin roadworks bounce"
               name="text"
-              icon="\f7d9"
             />
           ))
       )
@@ -91,9 +91,9 @@ export default class GoogleMaps extends React.Component<Props, State> {
             <Marker
               lat={locationJams.toLoc.lat && locationJams.fromLoc.lat}
               lng={locationJams.toLoc.lon && locationJams.fromLoc.lon}
-              color="blue"
+              color="#DC143C"
+              className="pin jams bounce"
               name="text"
-              icon="\f85b"
             />
           ))
       )
@@ -107,9 +107,9 @@ export default class GoogleMaps extends React.Component<Props, State> {
           <Marker
             lat={key.fromLoc.lat}
             lng={key.fromLoc.lon}
-            color="black"
+            color="#4863A0"
+            className="pin radars bounce"
             name="text"
-            icon="\f030"
           />
         ))
       )
@@ -125,7 +125,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
             <Polyline
               map={this.state.map}
               maps={this.state.maps}
-              polylineColor="grey"
+              polylineColor="#484848"
               markers={google.maps.geometry.encoding.decodePath(
                 locationRoadworks.polyline
               )}
