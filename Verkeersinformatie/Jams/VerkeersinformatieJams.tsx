@@ -5,8 +5,13 @@ interface State {
   verkeersinformatie: Array<any>;
 }
 
-export default class VerkeersinformatieJams extends React.Component<State> {
-  constructor(props) {
+interface Props {}
+
+export default class VerkeersinformatieJams extends React.Component<
+  Props,
+  State
+> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       verkeersinformatie: []
@@ -20,7 +25,7 @@ export default class VerkeersinformatieJams extends React.Component<State> {
       .then(data => this.setState({ verkeersinformatie: data }));
   }
 
-  private renderTableDataJams(): JSX.Element {
+  private renderTableDataJams() {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams.map((key, index) => (
