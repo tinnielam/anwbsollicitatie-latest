@@ -14,7 +14,13 @@ export default class Polyline extends Component<Props> {
       geodesic: true,
       strokeColor: this.props.polylineColor,
       strokeOpacity: 0.6,
-      strokeWeight: 3
+      strokeWeight: 3,
+      icons: [
+        {
+          icon: { path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW },
+          offset: "100%"
+        }
+      ]
     });
     geodesicPolyline.setMap(this.props.map);
   }

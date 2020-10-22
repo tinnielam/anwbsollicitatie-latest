@@ -60,7 +60,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
         segments.roadworks
           .filter(
             roadworks =>
-              typeof roadworks.polyline !== "undefined" &&
               typeof roadworks.fromLoc !== "undefined" &&
               typeof roadworks.toLoc !== "undefined"
           )
