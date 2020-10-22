@@ -76,12 +76,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
     return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams
-          .filter(
-            jams =>
-              typeof jams.toLoc !== "undefined" &&
-              typeof jams.fromLoc !== "undefined" &&
-              typeof jams.polyline !== "undefined"
-          )
+          .filter(jams => typeof jams.fromLoc !== "undefined")
           .map(locationJams => (
             <Marker
               lat={locationJams.fromLoc.lat}
