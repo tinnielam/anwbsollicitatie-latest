@@ -58,15 +58,11 @@ export default class GoogleMaps extends React.Component<Props, State> {
     return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks
-          .filter(
-            roadworks =>
-              typeof roadworks.fromLoc !== "undefined" &&
-              typeof roadworks.toLoc !== "undefined"
-          )
+          .filter(roadworks => typeof roadworks.fromLoc !== "undefined")
           .map(locationRoadworks => (
             <Marker
-              lat={locationRoadworks.toLoc.lat && locationRoadworks.fromLoc.lat}
-              lng={locationRoadworks.toLoc.lon && locationRoadworks.fromLoc.lon}
+              lat={locationRoadworks.fromLoc.lat}
+              lng={locationRoadworks.fromLoc.lon}
               color="#484848"
               className="pin roadworks bounce"
               name="text"
@@ -88,8 +84,8 @@ export default class GoogleMaps extends React.Component<Props, State> {
           )
           .map(locationJams => (
             <Marker
-              lat={locationJams.toLoc.lat && locationJams.fromLoc.lat}
-              lng={locationJams.toLoc.lon && locationJams.fromLoc.lon}
+              lat={locationJams.fromLoc.lat}
+              lng={locationJams.fromLoc.lon}
               color="#DC143C"
               className="pin jams bounce"
               name="text"
