@@ -1,22 +1,10 @@
-.pin {
-  width: 30px;
-  height: 30px;
-  border-radius: 50% 50% 50% 0;
-  background: #00cae9;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 50%;
-  top: 50%;
+.pin.roadworks:after {
+  content: "\f7d9";
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  font-size: 25px;
+  color: grey;
   margin: -20px 0 0 -20px;
-}
-.pin:after {
-  content: "";
-  width: 14px;
-  height: 14px;
-  margin: 8px 0 0 8px;
-  background: #e6e6e6;
-  position: absolute;
-  border-radius: 50%;
 }
 
 .bounce {
@@ -83,6 +71,6 @@
   }
 
   100% {
-    transform: translateY(0) rotate(-45deg);
+    transform: translateY(0) rotate(0deg);
   }
 }

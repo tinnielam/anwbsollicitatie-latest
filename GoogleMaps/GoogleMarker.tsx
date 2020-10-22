@@ -6,7 +6,7 @@ interface Props {
   lng: string;
   color: string;
   name: string;
-  icon: string;
+  className: string;
 }
 
 export default class Marker extends Component<Props> {
@@ -14,11 +14,10 @@ export default class Marker extends Component<Props> {
     return (
       <div>
         <div
-          className="pin bounce"
+          className={this.props.className}
           style={{ backgroundColor: this.props.color, cursor: "pointer" }}
           title={name}
         />
-        <i id="fontIcon" className={this.props.icon} />
         <div className="pulse" />
       </div>
     );
