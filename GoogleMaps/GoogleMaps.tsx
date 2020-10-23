@@ -118,6 +118,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
             <Polyline
               map={this.state.map}
               maps={this.state.maps}
+              icon="symbolRoadworks"
               polylineColor="#484848"
               markers={google.maps.geometry.encoding.decodePath(
                 locationRoadworks.polyline
@@ -137,6 +138,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
             <Polyline
               map={this.state.map}
               maps={this.state.maps}
+              icon="symbolJams"
               polylineColor="orange"
               markers={google.maps.geometry.encoding.decodePath(
                 locationJams.polyline
