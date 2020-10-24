@@ -9,6 +9,7 @@ interface State {
   verkeersinformatieRadars: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
   map: object;
+  mapsLoaded:boolean
   maps: object;
 }
 
@@ -24,18 +25,32 @@ export default class GoogleMaps extends React.Component<Props, State> {
       verkeersinformatieJams: [],
       verkeersinformatieRadars: [],
       verkeersinformatieRoadworks: [],
+      mapsLoaded: false,
       map: null,
       maps: null
     };
   }
 
   static defaultProps = {
+    markers: [
+      { lat: 53.42728, lng: -6.24357 },
+      { lat: 43.681583, lng: -79.61146 }
+    ],
     center: {
       lat: 52.254709,
       lng: 5.353826
     },
     zoom: 8
   };
+
+  private onMapLoaded(map, maps) {
+    this.setState({
+      ...this.state,
+      mapsLoaded: true,
+      map: map,
+      maps: maps
+    });
+  }
 
   public componentDidMount(): void {
     const anwbDataJams = new AnwbData();
@@ -149,11 +164,18 @@ export default class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
-  private onMapLoaded(map, maps) {
-    this.setState({
-      map: map,
-      maps: maps
-    });
+  afterMapLoadChanges() {
+    return (
+      <div style={{ display: "none" }}>
+        <Polyline
+          map={this.state.map}
+          maps={this.state.maps}
+          icon="symbolJams"
+          polylineColor="orange"
+          markers={this.props.markers}
+        />
+      </div>
+    );
   }
 
   render() {
@@ -169,8 +191,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
-          {this.verkeersinformatiePolylineJams()}
-          {this.verkeersinformatiePolylineRoadworks()}
+          {this.state.mapsLoaded ? this.afterMapLoadChanges() : ""}
           {this.getToLocationJams()}
           {this.getToLocationRadars()}
           {this.getToLocationRoadworks()}

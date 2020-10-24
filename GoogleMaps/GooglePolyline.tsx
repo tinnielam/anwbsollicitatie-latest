@@ -39,7 +39,7 @@ export default class Polyline extends Component<Props> {
       strokeWeight: 3,
       icons: [
         {
-          icon: this.props.icon,
+          icon: symbolJams,
           fixedRotation: true,
           offset: "0%"
         },
