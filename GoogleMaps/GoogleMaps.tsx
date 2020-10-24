@@ -9,7 +9,6 @@ interface State {
   verkeersinformatieRadars: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
   map: object;
-  mapsLoaded:boolean
   maps: object;
 }
 
@@ -25,17 +24,12 @@ export default class GoogleMaps extends React.Component<Props, State> {
       verkeersinformatieJams: [],
       verkeersinformatieRadars: [],
       verkeersinformatieRoadworks: [],
-      mapsLoaded: false,
       map: null,
       maps: null
     };
   }
 
   static defaultProps = {
-    markers: [
-      { lat: 53.42728, lng: -6.24357 },
-      { lat: 43.681583, lng: -79.61146 }
-    ],
     center: {
       lat: 52.254709,
       lng: 5.353826
@@ -45,8 +39,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
 
   private onMapLoaded(map, maps) {
     this.setState({
-      ...this.state,
-      mapsLoaded: true,
       map: map,
       maps: maps
     });
@@ -130,15 +122,17 @@ export default class GoogleMaps extends React.Component<Props, State> {
         segments.roadworks
           .filter(roadworks => typeof roadworks.polyline !== "undefined")
           .map(locationRoadworks => (
-            <Polyline
-              map={this.state.map}
-              maps={this.state.maps}
-              icon="symbolRoadworks"
-              polylineColor="#484848"
-              markers={google.maps.geometry.encoding.decodePath(
-                locationRoadworks.polyline
-              )}
-            />
+            <div style={{ display: "none" }}>
+              <Polyline
+                map={this.state.map}
+                maps={this.state.maps}
+                icon="symbolRoadworks"
+                polylineColor="#484848"
+                markers={google.maps.geometry.encoding.decodePath(
+                  locationRoadworks.polyline
+                )}
+              />
+            </div>
           ))
       )
     );
@@ -150,31 +144,19 @@ export default class GoogleMaps extends React.Component<Props, State> {
         segments.jams
           .filter(jams => typeof jams.polyline !== "undefined")
           .map(locationJams => (
-            <Polyline
-              map={this.state.map}
-              maps={this.state.maps}
-              icon="symbolJams"
-              polylineColor="orange"
-              markers={google.maps.geometry.encoding.decodePath(
-                locationJams.polyline
-              )}
-            />
+            <div style={{ display: "none" }}>
+              <Polyline
+                map={this.state.map}
+                maps={this.state.maps}
+                icon="symbolJams"
+                polylineColor="orange"
+                markers={google.maps.geometry.encoding.decodePath(
+                  locationJams.polyline
+                )}
+              />
+            </div>
           ))
       )
-    );
-  }
-
-  afterMapLoadChanges() {
-    return (
-      <div style={{ display: "none" }}>
-        <Polyline
-          map={this.state.map}
-          maps={this.state.maps}
-          icon="symbolJams"
-          polylineColor="orange"
-          markers={this.props.markers}
-        />
-      </div>
     );
   }
 
@@ -191,7 +173,8 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
-          {this.state.mapsLoaded ? this.afterMapLoadChanges() : ""}
+          {this.verkeersinformatiePolylineJams()}
+          {this.verkeersinformatiePolylineRoadworks()}
           {this.getToLocationJams()}
           {this.getToLocationRadars()}
           {this.getToLocationRoadworks()}
