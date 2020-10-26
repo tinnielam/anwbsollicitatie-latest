@@ -1,8 +1,10 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
-import Marker from "./GoogleMarker";
 import AnwbData from "../Data/AnwbData";
 import RadarsMarker from "./RadarsMarker";
+import RoadworksMarker from "./RoadworksMarker";
+import JamsMarker from "./JamsMarker";
+
 import JamsPolyline from "./JamsPolyline";
 import RoadworksPolyline from "./RoadworksPolyline";
 
@@ -63,45 +65,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
       .then(data => this.setState({ verkeersinformatieRadars: data }));
   }
 
-  private setRoadworksMarkers() {
-    return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.roadworks
-          .filter(
-            roadworks =>
-              typeof roadworks.fromLoc !== "undefined" && !roadworks.polyline
-          )
-          .map(locationRoadworks => (
-            <Marker
-              lat={locationRoadworks.fromLoc.lat}
-              lng={locationRoadworks.fromLoc.lon}
-              color="#484848"
-              className="pin roadworks bounce"
-              name="text"
-            />
-          ))
-      )
-    );
-  }
-
-  private setJamsMarkers() {
-    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.jams
-          .filter(jams => typeof jams.fromLoc !== "undefined" && !jams.polyline)
-          .map(locationJams => (
-            <Marker
-              lat={locationJams.fromLoc.lat}
-              lng={locationJams.fromLoc.lon}
-              color="#DC143C"
-              className="pin jams bounce"
-              name="text"
-            />
-          ))
-      )
-    );
-  }
-
   render() {
     return (
       <div style={{ height: "100vh", width: "100%" }}>
@@ -115,19 +78,22 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
+          <div style={{ display: "none" }}>
+            <JamsPolyline
+              array={this.state.verkeersinformatieJams}
+              map={this.state.map}
+              maps={this.state.maps}
+            />
+            <RoadworksPolyline
+              array={this.state.verkeersinformatieRoadworks}
+              map={this.state.map}
+              maps={this.state.maps}
+            />
+          </div>
+
           <RadarsMarker array={this.state.verkeersinformatieRadars} />
-          <JamsPolyline
-            array={this.state.verkeersinformatieJams}
-            map={this.state.map}
-            maps={this.state.maps}
-          />
-          <RoadworksPolyline
-            array={this.state.verkeersinformatieRoadworks}
-            map={this.state.map}
-            maps={this.state.maps}
-          />
-          {this.setJamsMarkers()}
-          {this.setRoadworksMarkers()}
+          <JamsMarker array={this.state.verkeersinformatieJams} />
+          <RoadworksMarker array={this.state.verkeersinformatieRoadworks} />
         </GoogleMapReact>
       </div>
     );

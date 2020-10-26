@@ -24,8 +24,8 @@ export default class RoadworksPolyline extends React.Component<Props> {
       verkeersinformatie.segments.map(segments =>
         segments.roadworks
           .filter(roadworks => typeof roadworks.polyline !== "undefined")
-          .map(locationRoadworks => (
-            <div style={{ display: "none" }}>
+          .map(locationRoadworks => {
+            return (
               <Polyline
                 map={this.props.map}
                 maps={this.props.maps}
@@ -35,8 +35,8 @@ export default class RoadworksPolyline extends React.Component<Props> {
                   locationRoadworks.polyline
                 )}
               />
-            </div>
-          ))
+            );
+          })
       )
     );
   }
