@@ -2,30 +2,13 @@ import React from "react";
 import Polyline from "./GooglePolyline";
 import AnwbData from "../Data/AnwbData";
 
-interface State {
-  verkeersinformatieRoadworks: Array<any>;
-}
-
 interface Props {
   map: any;
   maps: any;
+  array: Array<any>;
 }
 
-export default class RoadworksPolyline extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      verkeersinformatieRoadworks: []
-    };
-  }
-
-  public componentDidMount(): void {
-    const anwbDataRoadworks = new AnwbData();
-    anwbDataRoadworks
-      .getAnwbData("roadworks")
-      .then(data => this.setState({ verkeersinformatieRoadworks: data }));
-  }
-
+export default class RoadworksPolyline extends React.Component<Props> {
   private setPolylineRoadworks() {
     const symbolRoadworks = {
       path:
@@ -38,20 +21,22 @@ export default class RoadworksPolyline extends React.Component<Props, State> {
       strokeWeight: 2
     };
 
-    return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
+    return this.props.array.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks
           .filter(roadworks => typeof roadworks.polyline !== "undefined")
           .map(locationRoadworks => (
-            <Polyline
-              map={this.props.map}
-              maps={this.props.maps}
-              icon={symbolRoadworks}
-              polylineColor={"#484848"}
-              markers={google.maps.geometry.encoding.decodePath(
-                locationRoadworks.polyline
-              )}
-            />
+            <div style={{ display: "none" }}>
+              <Polyline
+                map={this.props.map}
+                maps={this.props.maps}
+                icon={symbolRoadworks}
+                polylineColor={"#484848"}
+                markers={google.maps.geometry.encoding.decodePath(
+                  locationRoadworks.polyline
+                )}
+              />
+            </div>
           ))
       )
     );

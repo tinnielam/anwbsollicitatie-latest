@@ -2,28 +2,15 @@ import React from "react";
 import Polyline from "./GooglePolyline";
 import AnwbData from "../Data/AnwbData";
 
-interface State {
-  verkeersinformatieJams: Array<any>;
-}
-
 interface Props {
   map: any;
   maps: any;
+  array: Array<any>;
 }
 
-export default class JamsPolyline extends React.Component<Props, State> {
+export default class JamsPolyline extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      verkeersinformatieJams: []
-    };
-  }
-
-  public componentDidMount(): void {
-    const anwbDataJams = new AnwbData();
-    anwbDataJams
-      .getAnwbData("jams")
-      .then(data => this.setState({ verkeersinformatieJams: data }));
   }
 
   private setPolylineJams() {
@@ -40,20 +27,22 @@ export default class JamsPolyline extends React.Component<Props, State> {
       strokeWeight: 1
     };
 
-    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
+    return this.props.array.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams
           .filter(jams => typeof jams.polyline !== "undefined")
           .map(locationJams => (
-            <Polyline
-              map={this.props.map}
-              maps={this.props.maps}
-              icon={symbolJams}
-              polylineColor={"orange"}
-              markers={google.maps.geometry.encoding.decodePath(
-                locationJams.polyline
-              )}
-            />
+            <div style={{ display: "none" }}>
+              <Polyline
+                map={this.props.map}
+                maps={this.props.maps}
+                icon={symbolJams}
+                polylineColor={"orange"}
+                markers={google.maps.geometry.encoding.decodePath(
+                  locationJams.polyline
+                )}
+              />
+            </div>
           ))
       )
     );

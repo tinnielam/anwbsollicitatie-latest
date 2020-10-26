@@ -9,6 +9,7 @@ import RoadworksPolyline from "./RoadworksPolyline";
 interface State {
   verkeersinformatieJams: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
+  verkeersinformatieRadars: Array<any>;
   map: object;
   maps: object;
 }
@@ -25,6 +26,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
     this.state = {
       verkeersinformatieJams: [],
       verkeersinformatieRoadworks: [],
+      verkeersinformatieRadars: [],
       map: null,
       maps: null
     };
@@ -51,6 +53,16 @@ export default class GoogleMaps extends React.Component<Props, State> {
     anwbDataRoadworks
       .getAnwbData("roadworks")
       .then(data => this.setState({ verkeersinformatieRoadworks: data }));
+
+    const anwbDataJams = new AnwbData();
+    anwbDataJams
+      .getAnwbData("jams")
+      .then(data => this.setState({ verkeersinformatieJams: data }));
+
+    const anwbDataRadars = new AnwbData();
+    anwbDataRadars
+      .getAnwbData("radars")
+      .then(data => this.setState({ verkeersinformatieRadars: data }));
   }
 
   private setRoadworksMarkers() {
@@ -105,9 +117,17 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
-          <RadarsMarker />
-          <JamsPolyline map={this.state.map} maps={this.state.maps} />
-          <RoadworksPolyline map={this.state.map} maps={this.state.maps} />
+          <RadarsMarker array={this.state.verkeersinformatieRadars} />
+          <JamsPolyline
+            array={this.state.verkeersinformatieJams}
+            map={this.state.map}
+            maps={this.state.maps}
+          />
+          <RoadworksPolyline
+            array={this.state.verkeersinformatieRoadworks}
+            map={this.state.map}
+            maps={this.state.maps}
+          />
           {this.setJamsMarkers()}
           {this.setRoadworksMarkers()}
         </GoogleMapReact>

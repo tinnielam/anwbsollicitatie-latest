@@ -1,24 +1,17 @@
 import React from "react";
 import Marker from "./GoogleMarker";
-import AnwbData from "../Data/AnwbData";
 
-export default class RadarsMarker extends React.Component {
-  constructor(props: {}) {
+interface Props {
+  array: Array<any>;
+}
+
+export default class RadarsMarker extends React.Component<Props> {
+  constructor(props: Props) {
     super(props);
-    this.state = {
-      verkeersinformatieRadars: []
-    };
-  }
-
-  public componentDidMount(): void {
-    const anwbDataRadars = new AnwbData();
-    anwbDataRadars
-      .getAnwbData("radars")
-      .then(data => this.setState({ verkeersinformatieRadars: data }));
   }
 
   private setRadarsMarkers() {
-    return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
+    return this.props.array.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map(locationRadars => (
           <Marker
