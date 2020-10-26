@@ -14,7 +14,7 @@ export default class Polyline extends Component<Props> {
       path: this.props.markers,
       geodesic: true,
       strokeColor: this.props.polylineColor,
-      strokeOpacity: 1,
+      strokeOpacity: 0.6,
       strokeWeight: 3,
       icons: [
         {

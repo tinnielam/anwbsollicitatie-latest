@@ -1,6 +1,5 @@
 import React from "react";
 import Polyline from "./GooglePolyline";
-import AnwbData from "../Data/AnwbData";
 
 interface Props {
   map: any;

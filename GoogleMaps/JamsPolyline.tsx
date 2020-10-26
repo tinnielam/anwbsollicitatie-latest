@@ -1,6 +1,5 @@
 import React from "react";
 import Polyline from "./GooglePolyline";
-import AnwbData from "../Data/AnwbData";
 
 interface Props {
   map: any;
@@ -9,10 +8,6 @@ interface Props {
 }
 
 export default class JamsPolyline extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   private setPolylineJams() {
     const symbolJams = {
       path:
