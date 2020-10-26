@@ -15,7 +15,6 @@ interface State {
 }
 
 interface Props {
-  displayType: string;
   center: { lat: number; lng: number };
   zoom: number;
 }
@@ -33,7 +32,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
   }
 
   static defaultProps = {
-    displayType: "none",
     center: {
       lat: 52.254709,
       lng: 5.353826
