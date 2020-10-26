@@ -24,19 +24,17 @@ export default class RoadworksPolyline extends React.Component<Props> {
       verkeersinformatie.segments.map(segments =>
         segments.roadworks
           .filter(roadworks => typeof roadworks.polyline !== "undefined")
-          .map(locationRoadworks => {
-            return (
-              <Polyline
-                map={this.props.map}
-                maps={this.props.maps}
-                icon={symbolRoadworks}
-                polylineColor={"#484848"}
-                markers={google.maps.geometry.encoding.decodePath(
-                  locationRoadworks.polyline
-                )}
-              />
-            );
-          })
+          .map(locationRoadworks => (
+            <Polyline
+              map={this.props.map}
+              maps={this.props.maps}
+              icon={symbolRoadworks}
+              polylineColor={"#484848"}
+              markers={google.maps.geometry.encoding.decodePath(
+                locationRoadworks.polyline
+              )}
+            />
+          ))
       )
     );
   }

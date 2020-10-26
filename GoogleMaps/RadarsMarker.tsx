@@ -6,10 +6,6 @@ interface Props {
 }
 
 export default class RadarsMarker extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   private setRadarsMarkers() {
     return this.props.array.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
