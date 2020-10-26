@@ -3,10 +3,10 @@ import GoogleMapReact from "google-map-react";
 import Marker from "./GoogleMarker";
 import Polyline from "./GooglePolyline";
 import AnwbData from "../Data/AnwbData";
+import Radars from "../Verkeersinformatie/Radars/VerkeersinformatieRadarsMaps";
 
 interface State {
   verkeersinformatieJams: Array<any>;
-  verkeersinformatieRadars: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
   map: object;
   maps: object;
@@ -23,7 +23,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
     super(props);
     this.state = {
       verkeersinformatieJams: [],
-      verkeersinformatieRadars: [],
       verkeersinformatieRoadworks: [],
       map: null,
       maps: null
@@ -39,7 +38,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
     zoom: 8
   };
 
-  private onMapLoaded(map, maps) {
+  public onMapLoaded(map, maps) {
     this.setState({
       map: map,
       maps: maps
@@ -56,11 +55,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
     anwbDataRoadworks
       .getAnwbData("roadworks")
       .then(data => this.setState({ verkeersinformatieRoadworks: data }));
-
-    const anwbDataRadars = new AnwbData();
-    anwbDataRadars
-      .getAnwbData("radars")
-      .then(data => this.setState({ verkeersinformatieRadars: data }));
   }
 
   private setRoadworksMarkers() {
@@ -98,22 +92,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
               name="text"
             />
           ))
-      )
-    );
-  }
-
-  private setRadarsMarkers() {
-    return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.radars.map(locationRadars => (
-          <Marker
-            lat={locationRadars.fromLoc.lat}
-            lng={locationRadars.fromLoc.lon}
-            color="#4863A0"
-            className="pin radars bounce"
-            name="text"
-          />
-        ))
       )
     );
   }
@@ -186,9 +164,14 @@ export default class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
+  private bla() {
+    let bla = new Radars({});
+    bla.setRadarsMarkers();
+  }
+
   render() {
     return (
-      <div style={{ height: "100vh", width: "100%", display: "none" }}>
+      <div style={{ height: "100vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{
             key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A",
@@ -199,10 +182,10 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
+          {this.bla()}
           {this.setPolylineJams()}
           {this.setPolylineRoadworks()}
           {this.setJamsMarkers()}
-          {this.setRadarsMarkers()}
           {this.setRoadworksMarkers()}
         </GoogleMapReact>
       </div>

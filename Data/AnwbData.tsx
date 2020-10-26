@@ -1,6 +1,6 @@
 export default class AnwbData {
-   getAnwbData(type: string): Promise<[]> {
-    return  fetch(
+  async getAnwbData(type: string): Promise<[]> {
+    return await fetch(
       `https://anwbtinlam.tinlam.repl.co/verkeersinformatie${type}`
     )
       .then(res => res.json())
