@@ -45,25 +45,20 @@ export default class JamsPolyline extends React.Component<Props, State> {
         segments.jams
           .filter(jams => typeof jams.polyline !== "undefined")
           .map(locationJams => (
-            <div style={{ display: "none" }}>
-              <Polyline
-                map={this.props.map}
-                maps={this.props.maps}
-                icon={symbolJams}
-                polylineColor={"orange"}
-                markers={google.maps.geometry.encoding.decodePath(
-                  locationJams.polyline
-                )}
-              />
-            </div>
+            <Polyline
+              map={this.props.map}
+              maps={this.props.maps}
+              icon={symbolJams}
+              polylineColor={"orange"}
+              markers={google.maps.geometry.encoding.decodePath(
+                locationJams.polyline
+              )}
+            />
           ))
       )
     );
   }
   render() {
-    return (
-    
-    this.setPolylineJams()
-    )
+    return this.setPolylineJams();
   }
 }
