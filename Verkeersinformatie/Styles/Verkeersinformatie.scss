@@ -11,13 +11,18 @@
   width: 50%;
 }
 
-#verkeersinformatie td, #verkeersinformatie th {
+#verkeersinformatie td,
+#verkeersinformatie th {
   padding: 8px;
 }
 
-#verkeersinformatie tr:nth-child(even){background-color: #f2f2f2;}
+#verkeersinformatie tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-#verkeersinformatie tr:hover {background-color: #ddd;}
+#verkeersinformatie tr:hover {
+  background-color: #ddd;
+}
 
 #verkeersinformatie th {
   padding-top: 12px;
@@ -27,7 +32,7 @@
   color: white;
 }
 
-#fontIcon{
+#fontIcon {
   font-size: 20px;
 }
 
