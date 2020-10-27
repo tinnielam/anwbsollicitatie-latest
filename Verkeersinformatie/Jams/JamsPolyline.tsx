@@ -1,5 +1,5 @@
 import React from "react";
-import Polyline from "./GooglePolyline";
+import Polyline from "../../GoogleMaps/GooglePolyline";
 
 interface Props {
   map: any;

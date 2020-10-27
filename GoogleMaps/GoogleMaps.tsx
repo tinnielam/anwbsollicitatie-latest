@@ -1,12 +1,9 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
 import AnwbData from "../Data/AnwbData";
-import RadarsMarker from "./RadarsMarker";
-import RoadworksMarker from "./RoadworksMarker";
-import JamsMarker from "./JamsMarker";
-
-import JamsPolyline from "./JamsPolyline";
-import RoadworksPolyline from "./RoadworksPolyline";
+import Marker from "./GoogleMarker";
+import JamsPolyline from "../Verkeersinformatie/Jams/JamsPolyline";
+import RoadworksPolyline from "../Verkeersinformatie/Roadworks/RoadworksPolyline";
 
 interface State {
   verkeersinformatieJams: Array<any>;
@@ -65,6 +62,61 @@ export default class GoogleMaps extends React.Component<Props, State> {
       .then(data => this.setState({ verkeersinformatieRadars: data }));
   }
 
+  private setRadarsMarkers() {
+    return this.props.array.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.radars.map(locationRadars => (
+          <Marker
+            lat={locationRadars.fromLoc.lat}
+            lng={locationRadars.fromLoc.lon}
+            color="#4863A0"
+            className="pin radars bounce"
+            name="text"
+          />
+        ))
+      )
+    );
+  }
+
+  private setRoadworksMarkers() {
+    return this.props.array.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.roadworks
+          .filter(
+            roadworks =>
+              typeof roadworks.fromLoc !== "undefined" && !roadworks.polyline
+          )
+          .map(locationRoadworks => (
+            <Marker
+              lat={locationRoadworks.fromLoc.lat}
+              lng={locationRoadworks.fromLoc.lon}
+              color="#484848"
+              className="pin roadworks bounce"
+              name="text"
+            />
+          ))
+      )
+    );
+  }
+
+  private setJamsMarkers() {
+    return this.props.array.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.jams
+          .filter(jams => typeof jams.fromLoc !== "undefined" && !jams.polyline)
+          .map(locationJams => (
+            <Marker
+              lat={locationJams.fromLoc.lat}
+              lng={locationJams.fromLoc.lon}
+              color="#DC143C"
+              className="pin jams bounce"
+              name="text"
+            />
+          ))
+      )
+    );
+  }
+
   render() {
     return (
       <div style={{ height: "100vh", width: "100%" }}>
@@ -90,10 +142,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
               maps={this.state.maps}
             />
           </div>
-
-          <RadarsMarker array={this.state.verkeersinformatieRadars} />
-          <JamsMarker array={this.state.verkeersinformatieJams} />
-          <RoadworksMarker array={this.state.verkeersinformatieRoadworks} />
         </GoogleMapReact>
       </div>
     );
