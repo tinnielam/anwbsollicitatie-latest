@@ -9,6 +9,7 @@ interface State {
   verkeersinformatieJams: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
   verkeersinformatieRadars: Array<any>;
+  verkeersinformatieTotalTraffic: Array<any>;
   map: object;
   maps: object;
 }
@@ -25,6 +26,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
       verkeersinformatieJams: [],
       verkeersinformatieRoadworks: [],
       verkeersinformatieRadars: [],
+      verkeersinformatieTotalTraffic: [],
       map: null,
       maps: null
     };
@@ -60,6 +62,11 @@ export default class GoogleMaps extends React.Component<Props, State> {
     anwbDataRadars
       .getAnwbData("radars")
       .then(data => this.setState({ verkeersinformatieRadars: data }));
+
+    const getAnwbDataTotalTraffic = new AnwbData();
+    getAnwbDataTotalTraffic
+      .getAnwbData("radars")
+      .then(data => this.setState({ verkeersinformatieTotalTraffic: data }));
   }
 
   private setRadarsMarkers() {
@@ -117,9 +124,13 @@ export default class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
+  hoi() {
+    console.log(this.state.getAnwbDataTotalTraffic);
+  }
+
   render() {
     return (
-      <div style={{ height: "97vh", width: "100%" }}>
+      <div style={{ height: "94vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{
             key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A",
@@ -130,6 +141,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
+          {this.hoi()}
           <div style={{ display: "none" }}>
             <JamsPolyline
               array={this.state.verkeersinformatieJams}
