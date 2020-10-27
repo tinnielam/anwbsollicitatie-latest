@@ -119,7 +119,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
 
   render() {
     return (
-      <div style={{ height: "90vh", width: "100%" }}>
+      <div style={{ height: "97vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{
             key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A",
