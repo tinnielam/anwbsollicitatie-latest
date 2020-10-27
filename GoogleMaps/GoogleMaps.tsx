@@ -63,7 +63,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
   }
 
   private setRadarsMarkers() {
-    return this.props.array.map(verkeersinformatie =>
+    return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map(locationRadars => (
           <Marker
@@ -79,7 +79,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
   }
 
   private setRoadworksMarkers() {
-    return this.props.array.map(verkeersinformatie =>
+    return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks
           .filter(
@@ -100,7 +100,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
   }
 
   private setJamsMarkers() {
-    return this.props.array.map(verkeersinformatie =>
+    return this.state.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams
           .filter(jams => typeof jams.fromLoc !== "undefined" && !jams.polyline)
@@ -142,6 +142,9 @@ export default class GoogleMaps extends React.Component<Props, State> {
               maps={this.state.maps}
             />
           </div>
+          {this.setRadarsMarkers()}
+          {this.setRoadworksMarkers()}
+          {this.setJamsMarkers()}
         </GoogleMapReact>
       </div>
     );
