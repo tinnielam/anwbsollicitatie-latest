@@ -65,7 +65,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
 
     const getAnwbDataTotalTraffic = new AnwbData();
     getAnwbDataTotalTraffic
-      .getAnwbData("radars")
+      .getAnwbDataTotalTraffic()
       .then(data => this.setState({ verkeersinformatieTotalTraffic: data }));
   }
 
@@ -124,10 +124,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
-  hoi() {
-    console.log(this.state.getAnwbDataTotalTraffic);
-  }
-
   render() {
     return (
       <div style={{ height: "94vh", width: "100%" }}>
@@ -141,7 +137,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
-          {this.hoi()}
           <div style={{ display: "none" }}>
             <JamsPolyline
               array={this.state.verkeersinformatieJams}
