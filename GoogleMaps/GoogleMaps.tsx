@@ -4,7 +4,6 @@ import AnwbData from "../Data/AnwbData";
 import Marker from "./GoogleMarker";
 import JamsPolyline from "../Verkeersinformatie/Jams/JamsPolyline";
 import RoadworksPolyline from "../Verkeersinformatie/Roadworks/RoadworksPolyline";
-import RadarsMarkers from "../Verkeersinformatie/Radars/RadarsMarkers";
 
 interface State {
   verkeersinformatieJams: Array<any>;
@@ -109,6 +108,22 @@ export default class GoogleMaps extends React.Component<Props, State> {
     );
   }
 
+  private setRadarsMarkers() {
+    return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
+      verkeersinformatie.segments.map(segments =>
+        segments.radars.map(locationRadars => (
+          <Marker
+            lat={locationRadars.fromLoc.lat}
+            lng={locationRadars.fromLoc.lon}
+            color="#4863A0"
+            className="pin radars bounce"
+            name="text"
+          />
+        ))
+      )
+    );
+  }
+
   render() {
     return (
       <div style={{ height: "94vh", width: "100%" }}>
@@ -134,11 +149,10 @@ export default class GoogleMaps extends React.Component<Props, State> {
               maps={this.state.maps}
             />
           </div>
-          <RadarsMarkers
-            array={this.state.verkeersinformatieRadars}
-            map={this.state.map}
-            maps={this.state.maps}
-          />
+
+          {this.setRadarsMarkers()}
+          {this.setRoadworksMarkers()}
+          {this.setJamsMarkers()}
         </GoogleMapReact>
       </div>
     );
