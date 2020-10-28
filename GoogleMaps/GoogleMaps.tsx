@@ -69,22 +69,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
       .then(data => this.setState({ verkeersinformatieTotalTraffic: data }));
   }
 
-  private setRadarsMarkers() {
-    return this.state.verkeersinformatieRadars.map(verkeersinformatie =>
-      verkeersinformatie.segments.map(segments =>
-        segments.radars.map(locationRadars => (
-          <Marker
-            lat={locationRadars.fromLoc.lat}
-            lng={locationRadars.fromLoc.lon}
-            color="#4863A0"
-            className="pin radars bounce"
-            name="text"
-          />
-        ))
-      )
-    );
-  }
-
   private setRoadworksMarkers() {
     return this.state.verkeersinformatieRoadworks.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
@@ -149,7 +133,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
               maps={this.state.maps}
             />
           </div>
-          {this.setRadarsMarkers()}
           {this.setRoadworksMarkers()}
           {this.setJamsMarkers()}
         </GoogleMapReact>
