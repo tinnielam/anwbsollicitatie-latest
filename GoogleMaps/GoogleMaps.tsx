@@ -4,6 +4,7 @@ import AnwbData from "../Data/AnwbData";
 import Marker from "./GoogleMarker";
 import JamsPolyline from "../Verkeersinformatie/Jams/JamsPolyline";
 import RoadworksPolyline from "../Verkeersinformatie/Roadworks/RoadworksPolyline";
+import RadarsMarkers from "../Verkeersinformatie/Radars/RadarsMarkers";
 
 interface State {
   verkeersinformatieJams: Array<any>;
@@ -133,8 +134,11 @@ export default class GoogleMaps extends React.Component<Props, State> {
               maps={this.state.maps}
             />
           </div>
-          {this.setRoadworksMarkers()}
-          {this.setJamsMarkers()}
+          <RadarsMarkers
+            array={this.state.verkeersinformatieRadars}
+            map={this.state.map}
+            maps={this.state.maps}
+          />
         </GoogleMapReact>
       </div>
     );

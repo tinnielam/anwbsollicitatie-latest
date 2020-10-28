@@ -1,5 +1,5 @@
 import React from "react";
-import Markers from "../../GoogleMaps/GooglePMarkers";
+import Markers from "../../GoogleMaps/GoogleMarkers";
 
 interface Props {
   map: any;
@@ -7,17 +7,16 @@ interface Props {
   array: Array<any>;
 }
 
-export default class RadarsPolyline extends React.Component<Props> {
+export default class RadarsMarkers extends React.Component<Props> {
   private setRadarsMarkers() {
     return this.props.array.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map(locationRadars => (
           <Markers
-            lat={locationRadars.fromLoc.lat}
-            lng={locationRadars.fromLoc.lon}
-            color="#4863A0"
-            className="pin radars bounce"
-            name="text"
+            position={locationRadars.fromLoc.lat}
+            map={this.props.map}
+            maps={this.props.maps}
+            title="hoi"
           />
         ))
       )
