@@ -1,10 +1,12 @@
 import React from "react";
 import Polyline from "../../GoogleMaps/GooglePolyline";
+import InfoWindow from "../../GoogleMaps/GoogleInfoWindow";
 
 interface Props {
   map: any;
   maps: any;
   array: Array<any>;
+  place?: any;
 }
 
 export default class RoadworksPolyline extends React.Component<Props> {
@@ -25,15 +27,20 @@ export default class RoadworksPolyline extends React.Component<Props> {
         segments.roadworks
           .filter(roadworks => typeof roadworks.polyline !== "undefined")
           .map(locationRoadworks => (
-            <Polyline
-              map={this.props.map}
-              maps={this.props.maps}
-              icon={symbolRoadworks}
-              polylineColor={"#484848"}
-              markers={google.maps.geometry.encoding.decodePath(
-                locationRoadworks.polyline
-              )}
-            />
+            <React.Fragment>
+            <div>
+              <Polyline
+                map={this.props.map}
+                maps={this.props.maps}
+                icon={symbolRoadworks}
+                polylineColor={"#484848"}
+                markers={google.maps.geometry.encoding.decodePath(
+                  locationRoadworks.polyline
+                )}
+              />
+              <InfoWindow place={locationRoadworks.reason} />;
+              </div>
+            </React.Fragment>
           ))
       )
     );
