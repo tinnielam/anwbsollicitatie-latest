@@ -12,6 +12,7 @@ interface State {
   verkeersinformatieTotalTraffic: Array<any>;
   map: object;
   maps: object;
+  state: any;
 }
 
 interface Props {
@@ -23,6 +24,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      state: null,
       verkeersinformatieJams: [],
       verkeersinformatieRoadworks: [],
       verkeersinformatieRadars: [],
@@ -84,6 +86,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
               color="#484848"
               className="pin roadworks bounce"
               name="text"
+              place={locationRoadworks.reason}
             />
           ))
       )
@@ -102,6 +105,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
               color="#DC143C"
               className="pin jams bounce"
               name="text"
+              place={locationJams.reason}
             />
           ))
       )
@@ -118,6 +122,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
             color="#4863A0"
             className="pin radars bounce"
             name="text"
+            place={locationRadars.reason}
           />
         ))
       )
