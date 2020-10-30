@@ -18,8 +18,6 @@ export default class Polyline extends Component<Props> {
       geodesic: true,
       strokeColor: this.props.polylineColor,
       map: this.props.map,
-      strokeOpacity: 0.6,
-      strokeWeight: 3,
       icons: [
         {
           icon: this.props.icon,
