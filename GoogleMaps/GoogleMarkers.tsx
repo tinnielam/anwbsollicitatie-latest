@@ -3,8 +3,8 @@ import { Component } from "react";
 interface Props {
   map: any;
   maps: any;
-  lat: any;
-  lon: any;
+  lat: string;
+  lon: string;
 }
 
 export default class GoogleMarkers extends Component<Props> {

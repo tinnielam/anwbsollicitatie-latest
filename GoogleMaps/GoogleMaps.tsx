@@ -82,6 +82,8 @@ export default class GoogleMaps extends React.Component<Props, State> {
           )
           .map(locationRoadworks => (
             <Markers
+              map={this.state.map}
+              maps={this.state.maps}
               lat={locationRoadworks.fromLoc.lat}
               lon={locationRoadworks.fromLoc.lon}
             />
