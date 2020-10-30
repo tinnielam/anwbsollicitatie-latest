@@ -32,6 +32,9 @@ export default class JamsPolyline extends React.Component<Props> {
               maps={this.props.maps}
               icon={symbolJams}
               polylineColor={"orange"}
+              lat={locationJams.fromLoc.lat}
+              lon={locationJams.fromLoc.lon}
+              contentString={locationJams.reason}
               markers={google.maps.geometry.encoding.decodePath(
                 locationJams.polyline
               )}

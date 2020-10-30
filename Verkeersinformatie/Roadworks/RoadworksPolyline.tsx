@@ -33,6 +33,8 @@ export default class RoadworksPolyline extends React.Component<Props> {
                 maps={this.props.maps}
                 icon={symbolRoadworks}
                 polylineColor={"#484848"}
+                lat={locationRoadworks.fromLoc.lat}
+                lon={locationRoadworks.fromLoc.lon}
                 contentString={locationRoadworks.reason}
                 markers={google.maps.geometry.encoding.decodePath(
                   locationRoadworks.polyline

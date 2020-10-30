@@ -7,6 +7,8 @@ interface Props {
   polylineColor: string;
   icon: any;
   contentString: string;
+  lat: number;
+  lon: number;
 }
 
 export default class Polyline extends Component<Props> {
@@ -32,11 +34,16 @@ export default class Polyline extends Component<Props> {
     });
 
     const infowindow = new google.maps.InfoWindow({
-      content: this.props.contentString
+      content: this.props.contentString,
+      position: { lat: this.props.lat, lng: this.props.lon }
     });
 
     geodesicPolyline.addListener("click", () => {
       infowindow.open(this.props.map, geodesicPolyline);
+    });
+
+    this.props.maps.event.addListener(this.props.map, "click", function(event) {
+      infowindow.close();
     });
   }
 
