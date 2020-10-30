@@ -2,6 +2,7 @@ import React from "react";
 import GoogleMapReact from "google-map-react";
 import AnwbData from "../Data/AnwbData";
 import Marker from "./GoogleMarker";
+import Markers from "./GoogleMarkers";
 import JamsPolyline from "../Verkeersinformatie/Jams/JamsPolyline";
 import RoadworksPolyline from "../Verkeersinformatie/Roadworks/RoadworksPolyline";
 
@@ -80,13 +81,9 @@ export default class GoogleMaps extends React.Component<Props, State> {
               typeof roadworks.fromLoc !== "undefined" && !roadworks.polyline
           )
           .map(locationRoadworks => (
-            <Marker
+            <Markers
               lat={locationRoadworks.fromLoc.lat}
-              lng={locationRoadworks.fromLoc.lon}
-              color="#484848"
-              className="pin roadworks bounce"
-              name="text"
-              place={locationRoadworks.reason}
+              lon={locationRoadworks.fromLoc.lon}
             />
           ))
       )
@@ -142,6 +139,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}
         >
+          {this.setRoadworksMarkers()}
           <div style={{ display: "none" }}>
             <JamsPolyline
               array={this.state.verkeersinformatieJams}
@@ -154,10 +152,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
               maps={this.state.maps}
             />
           </div>
-
-          {this.setRadarsMarkers()}
-          {this.setRoadworksMarkers()}
-          {this.setJamsMarkers()}
         </GoogleMapReact>
       </div>
     );
