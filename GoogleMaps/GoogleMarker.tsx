@@ -8,7 +8,6 @@ interface Props {
   color: string;
   name: string;
   className: string;
-  place: any;
 }
 
 export default class Marker extends Component<Props> {
@@ -21,7 +20,6 @@ export default class Marker extends Component<Props> {
           title={this.props.name}
         />
         <div className="pulse" />
-        {<InfoWindow place={this.props.place} />}
       </div>
     );
   }

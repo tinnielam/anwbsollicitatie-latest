@@ -86,6 +86,7 @@ export default class GoogleMaps extends React.Component<Props, State> {
               maps={this.state.maps}
               lat={locationRoadworks.fromLoc.lat}
               lon={locationRoadworks.fromLoc.lon}
+              contentString={locationRoadworks.reason}
             />
           ))
       )
@@ -104,7 +105,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
               color="#DC143C"
               className="pin jams bounce"
               name="text"
-              place={locationJams.reason}
             />
           ))
       )
@@ -121,7 +121,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
             color="#4863A0"
             className="pin radars bounce"
             name="text"
-            place={locationRadars.reason}
           />
         ))
       )

@@ -6,6 +6,7 @@ interface Props {
   maps: any;
   polylineColor: string;
   icon: any;
+  contentString: string;
 }
 
 export default class Polyline extends Component<Props> {
@@ -14,6 +15,7 @@ export default class Polyline extends Component<Props> {
       path: this.props.markers,
       geodesic: true,
       strokeColor: this.props.polylineColor,
+      map: this.props.map,
       strokeOpacity: 0.6,
       strokeWeight: 3,
       icons: [
@@ -28,7 +30,14 @@ export default class Polyline extends Component<Props> {
         }
       ]
     });
-    geodesicPolyline.setMap(this.props.map);
+
+    const infowindow = new google.maps.InfoWindow({
+      content: this.props.contentString
+    });
+
+    geodesicPolyline.addListener("click", () => {
+      infowindow.open(this.props.map, geodesicPolyline);
+    });
   }
 
   render() {

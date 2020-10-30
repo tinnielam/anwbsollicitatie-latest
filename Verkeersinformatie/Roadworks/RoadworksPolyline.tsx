@@ -6,7 +6,7 @@ interface Props {
   map: any;
   maps: any;
   array: Array<any>;
-  place?: any;
+  contentString?: any;
 }
 
 export default class RoadworksPolyline extends React.Component<Props> {
@@ -27,20 +27,18 @@ export default class RoadworksPolyline extends React.Component<Props> {
         segments.roadworks
           .filter(roadworks => typeof roadworks.polyline !== "undefined")
           .map(locationRoadworks => (
-            <React.Fragment>
             <div>
               <Polyline
                 map={this.props.map}
                 maps={this.props.maps}
                 icon={symbolRoadworks}
                 polylineColor={"#484848"}
+                contentString={locationRoadworks.reason}
                 markers={google.maps.geometry.encoding.decodePath(
                   locationRoadworks.polyline
                 )}
               />
-              <InfoWindow place={locationRoadworks.reason} />;
-              </div>
-            </React.Fragment>
+            </div>
           ))
       )
     );

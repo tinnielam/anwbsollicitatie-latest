@@ -5,14 +5,27 @@ interface Props {
   maps: any;
   lat: string;
   lon: string;
+  contentString: string;
 }
 
 export default class GoogleMarkers extends Component<Props> {
   public renderMarkers() {
     let marker = new this.props.maps.Marker({
-      position: { lat: this.props.lat, lng: this.props.lon }
+      position: { lat: this.props.lat, lng: this.props.lon },
+      map: this.props.map
     });
-    marker.setMap(this.props.map);
+
+    const infowindow = new google.maps.InfoWindow({
+      content: this.props.contentString
+    });
+
+    marker.addListener("click", () => {
+      infowindow.open(this.props.map, marker);
+    });
+
+    this.props.maps.event.addListener(this.props.map, "click", function(event) {
+      infowindow.close();
+    });
   }
 
   render() {
