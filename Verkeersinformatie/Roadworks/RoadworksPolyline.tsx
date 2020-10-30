@@ -1,6 +1,5 @@
 import React from "react";
 import Polyline from "../../GoogleMaps/GooglePolyline";
-import InfoWindow from "../../GoogleMaps/GoogleInfoWindow";
 
 interface Props {
   map: any;
