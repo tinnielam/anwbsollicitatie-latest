@@ -5,12 +5,12 @@ import JamsPolyline from "../Verkeersinformatie/Jams/JamsPolyline";
 import RoadworksPolyline from "../Verkeersinformatie/Roadworks/RoadworksPolyline";
 import RoadworksMarkers from "../Verkeersinformatie/Roadworks/RoadworksMarkers";
 import JamsMarkers from "../Verkeersinformatie/Jams/JamsMarkers";
+import RadarsMarkers from "../Verkeersinformatie/Radars/RadarsMarkers";
 
 interface State {
   verkeersinformatieJams: Array<any>;
   verkeersinformatieRoadworks: Array<any>;
   verkeersinformatieRadars: Array<any>;
-  verkeersinformatieTotalTraffic: Array<any>;
   map: object;
   maps: object;
   state: any;
@@ -29,7 +29,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
       verkeersinformatieJams: [],
       verkeersinformatieRoadworks: [],
       verkeersinformatieRadars: [],
-      verkeersinformatieTotalTraffic: [],
       map: null,
       maps: null
     };
@@ -98,6 +97,11 @@ export default class GoogleMaps extends React.Component<Props, State> {
             />
             <JamsMarkers
               array={this.state.verkeersinformatieJams}
+              map={this.state.map}
+              maps={this.state.maps}
+            />
+            <RadarsMarkers
+              array={this.state.verkeersinformatieRadars}
               map={this.state.map}
               maps={this.state.maps}
             />

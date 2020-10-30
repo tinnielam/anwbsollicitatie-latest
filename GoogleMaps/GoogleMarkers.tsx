@@ -6,13 +6,15 @@ interface Props {
   lat: string;
   lon: string;
   contentString: string;
+  icon: string;
 }
 
 export default class GoogleMarkers extends Component<Props> {
   public renderMarkers() {
     let marker = new this.props.maps.Marker({
       position: { lat: this.props.lat, lng: this.props.lon },
-      map: this.props.map
+      map: this.props.map,
+      icon: this.props.icon
     });
 
     const infowindow = new google.maps.InfoWindow({

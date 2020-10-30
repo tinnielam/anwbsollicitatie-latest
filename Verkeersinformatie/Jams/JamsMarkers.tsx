@@ -5,7 +5,6 @@ interface Props {
   map: any;
   maps: any;
   array: Array<any>;
-  contentString?: any;
 }
 
 export default class JamsMarkers extends React.Component<Props> {
@@ -21,6 +20,7 @@ export default class JamsMarkers extends React.Component<Props> {
               lat={locationJams.fromLoc.lat}
               lon={locationJams.fromLoc.lon}
               contentString={locationJams.reason}
+              icon={""}
             />
           ))
       )
