@@ -33,15 +33,14 @@ export default class RoadworksMarkers extends React.Component<Props> {
               maps={this.props.maps}
               lat={locationRoadworks.fromLoc.lat}
               lon={locationRoadworks.fromLoc.lon}
-              contentString={
- `
+              contentString={`
     <div>
       <div style="font-size: 16px;">
-        ${locationRoadworks.road }
+        ${locationRoadworks.road} ${segments.start} => ${segments.end}
       </div>
       <div style="font-size: 14px;">
         <span style="color: grey;">
-        ${segments.start}
+        ${locationRoadworks.from} => ${locationRoadworks.to}
         </span>
       </div>
       <div style="font-size: 14px; color: green;">

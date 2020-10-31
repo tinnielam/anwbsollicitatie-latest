@@ -28,7 +28,20 @@ export default class RadarsMarkers extends React.Component<Props> {
             maps={this.props.maps}
             lat={locationRadars.fromLoc.lat}
             lon={locationRadars.fromLoc.lon}
-            contentString={locationRadars.reason}
+            contentString={`
+    <div>
+      <div style="font-size: 16px;">
+        ${locationRadars.road} ${segments.start} => ${segments.end}
+      </div>
+      <div style="font-size: 14px;">
+        <span style="color: grey;">
+        ${locationRadars.from} => ${locationRadars.to}
+        </span>
+      </div>
+      <div style="font-size: 14px; color: green;">
+        ${locationRadars.reason}
+      </div>
+    </div>`}
             icon={symbolRadars}
           />
         ))

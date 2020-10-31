@@ -34,13 +34,20 @@ export default class RoadworksPolyline extends React.Component<Props> {
                 polylineColor={"#484848"}
                 lat={locationRoadworks.fromLoc.lat}
                 lon={locationRoadworks.fromLoc.lon}
-                contentString={
-                  segments.start +
-                  " => " +
-                  segments.end +
-                  " " +
-                  locationRoadworks.reason
-                }
+                contentString={`
+    <div>
+      <div style="font-size: 16px;">
+        ${locationRoadworks.road} ${segments.start} => ${segments.end}
+      </div>
+      <div style="font-size: 14px;">
+        <span style="color: grey;">
+        ${locationRoadworks.from} => ${locationRoadworks.to}
+        </span>
+      </div>
+      <div style="font-size: 14px; color: green;">
+        ${locationRoadworks.reason}
+      </div>
+    </div>`}
                 markers={google.maps.geometry.encoding.decodePath(
                   locationRoadworks.polyline
                 )}

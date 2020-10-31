@@ -29,9 +29,20 @@ export default class JamsMarkers extends React.Component<Props> {
               maps={this.props.maps}
               lat={locationJams.fromLoc.lat}
               lon={locationJams.fromLoc.lon}
-              contentString={
-                locationJams.reason + segments.start + " =>" + segments.end
-              }
+              contentString={`
+    <div>
+      <div style="font-size: 16px;">
+        ${locationJams.road} ${segments.start} => ${segments.end}
+      </div>
+      <div style="font-size: 14px;">
+        <span style="color: grey;">
+        ${locationJams.from} => ${locationJams.to}
+        </span>
+      </div>
+      <div style="font-size: 14px; color: green;">
+        ${locationJams.reason}
+      </div>
+    </div>`}
               icon={symbolJams}
             />
           ))
