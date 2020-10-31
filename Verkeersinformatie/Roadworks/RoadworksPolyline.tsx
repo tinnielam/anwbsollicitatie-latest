@@ -37,11 +37,15 @@ export default class RoadworksPolyline extends React.Component<Props> {
                 contentString={`
     <div>
       <div style="font-size: 16px;">
-        ${locationRoadworks.road} ${segments.start} => ${segments.end}
+        ${locationRoadworks.road} <i class="fas fa-tools"></i> ${
+                  segments.start
+                } <i class="fas fa-arrow-right"></i>  ${segments.end}
       </div>
       <div style="font-size: 14px;">
         <span style="color: grey;">
-        ${locationRoadworks.from} => ${locationRoadworks.to}
+        ${locationRoadworks.from} <i class="fas fa-arrow-right"></i>  ${
+                  locationRoadworks.to
+                }
         </span>
       </div>
       <div style="font-size: 14px; color: green;">
