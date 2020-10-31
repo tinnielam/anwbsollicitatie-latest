@@ -15,7 +15,7 @@ export default class JamsMarkers extends React.Component<Props> {
       fillColor: "orange",
       fillOpacity: 1,
       scale: 0.03,
-      strokeColor: "white",
+      strokeColor: "black",
       strokeWeight: 3
     };
 
