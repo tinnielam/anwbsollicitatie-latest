@@ -43,6 +43,12 @@ export default class JamsMarkers extends React.Component<Props> {
               }
         </span>
       </div>
+            <div style="font-size: 16px;">
+        <span style="color: grey;">
+        ${locationJams.delay / 60 + " min"} ${locationJams.distance / 1000 +
+                " KM"}
+        </span>
+      </div>
       <div style="font-size: 14px; color: green;">
         ${locationJams.reason}
       </div>

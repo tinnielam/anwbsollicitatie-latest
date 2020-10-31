@@ -38,6 +38,11 @@ export default class JamsPolyline extends React.Component<Props> {
                 segments.start
               } <i class="fas fa-arrow-right"></i> ${segments.end}
       </div>
+                  <div style="font-size: 16px;">
+        <span style="color: grey;">
+${locationJams.delay / 60 + " min"} ${locationJams.distance / 1000 + " KM"}
+                </span>
+      </div>
       <div style="font-size: 14px;">
         <span style="color: grey;">
         ${locationJams.from} <i class="fas fa-arrow-right"></i> ${
