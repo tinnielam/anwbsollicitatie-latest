@@ -40,6 +40,18 @@ export default class Polyline extends Component<Props> {
       infowindow.open(this.props.map, geodesicPolyline);
     });
 
+    geodesicPolyline.addListener("mouseover", function(event) {
+      geodesicPolyline.setOptions({
+        strokeOpacity: 1
+      });
+    });
+
+    geodesicPolyline.addListener("mouseout", function(event) {
+      geodesicPolyline.setOptions({
+        strokeOpacity: 0.5
+      });
+    });
+
     this.props.maps.event.addListener(this.props.map, "click", function(event) {
       infowindow.close();
     });
