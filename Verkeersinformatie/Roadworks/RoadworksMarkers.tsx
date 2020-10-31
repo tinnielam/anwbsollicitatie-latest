@@ -33,7 +33,21 @@ export default class RoadworksMarkers extends React.Component<Props> {
               maps={this.props.maps}
               lat={locationRoadworks.fromLoc.lat}
               lon={locationRoadworks.fromLoc.lon}
-              contentString={locationRoadworks.reason}
+              contentString={
+ `
+    <div>
+      <div style="font-size: 16px;">
+        ${locationRoadworks.road }
+      </div>
+      <div style="font-size: 14px;">
+        <span style="color: grey;">
+        ${segments.start}
+        </span>
+      </div>
+      <div style="font-size: 14px; color: green;">
+        ${locationRoadworks.reason}
+      </div>
+    </div>`}
               icon={symbolRoadworks}
             />
           ))
