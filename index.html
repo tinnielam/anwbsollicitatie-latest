@@ -13,17 +13,17 @@
 			position: relative;
 		}
 
-		#Jams {
+		#Jams,
+		#Radars,
+		#Roadworks {
 			position: absolute;
 			bottom: 0;
-      width:100%
-			z-index: 99;
-      background-color: coral
+			width: 100% z-index: 99;
+			background-color: #212529;
+			color: white;
 		}
 	</style>
 </head>
-
-
 
 <body class="sb-nav-fixed">>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -57,11 +57,10 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div id="wrapper">
-
 					<div id="map"></div>
 					<div id="Jams"></div>
-					<div id="Radars" hidden></div>
-					<div id="Roadworks" hidden></div>
+					<div id="Radars"></div>
+					<div id="Roadworks"></div>
 				</div>
 			</main>
 		</div>

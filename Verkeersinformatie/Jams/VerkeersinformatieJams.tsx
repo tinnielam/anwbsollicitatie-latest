@@ -32,10 +32,11 @@ export default class VerkeersinformatieJams extends React.Component<
           <tr key={key.id}>
             <td>{key.road}</td>
             <td>
-              {segments.start + " =>"} {segments.end}
+              {segments.start} <i className="fas fa-arrow-right" />{" "}
+              {segments.end}
             </td>
             <td>
-              {key.from + " =>"} {key.to}
+              {key.from} <i className="fas fa-arrow-right" /> {key.to}
             </td>
             <td>{key.reason}</td>
             <td>{key.distance / 1000 + " KM"}</td>
@@ -46,15 +47,12 @@ export default class VerkeersinformatieJams extends React.Component<
     );
   }
 
-
   public render(): JSX.Element {
     return (
       <div>
         <h5 id="title">Actuele Files</h5>
-            {this.renderTableDataJams()}
+        {this.renderTableDataJams()}
       </div>
     );
   }
 }
-
-

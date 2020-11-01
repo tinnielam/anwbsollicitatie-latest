@@ -32,10 +32,11 @@ export default class VerkeersinformatieRadars extends React.Component<
           <tr key={key.id}>
             <td>{key.road}</td>
             <td>
-              {segments.start + " =>"} {segments.end}
+              {segments.start} <i className="fas fa-arrow-right" />{" "}
+              {segments.end}
             </td>
             <td>
-              {key.from + " =>"} {key.to}
+              {key.from} <i className="fas fa-arrow-right" /> {key.to}
             </td>
             <td>{key.reason}</td>
           </tr>

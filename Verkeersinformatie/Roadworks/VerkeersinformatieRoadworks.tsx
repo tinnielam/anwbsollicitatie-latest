@@ -25,7 +25,7 @@ export default class VerkeersinformatieRoadworks extends React.Component {
           <tr key={key.id}>
             <td>{key.road}</td>
             <td>
-              {key.from + " =>"} {key.to}
+              {key.from} <i className="fas fa-arrow-right" /> {key.to}
             </td>
             <td>{key.reason}</td>
           </tr>
