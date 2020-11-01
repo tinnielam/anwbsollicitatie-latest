@@ -18,7 +18,8 @@ export default class RoadworksPolyline extends React.Component<Props> {
       fillOpacity: 1,
       scale: 0.04,
       strokeColor: "white",
-      strokeWeight: 2
+      strokeWeight: 2,
+      zIndex: 1000
     };
 
     return this.props.array.map(verkeersinformatie =>

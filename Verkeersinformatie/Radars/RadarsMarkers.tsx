@@ -17,7 +17,8 @@ export default class RadarsMarkers extends React.Component<Props> {
       fillOpacity: 1,
       scale: 0.09,
       strokeColor: "#43464B",
-      strokeWeight: 1
+      strokeWeight: 1,
+      zIndex: 1000
     };
 
     return this.props.array.map(verkeersinformatie =>

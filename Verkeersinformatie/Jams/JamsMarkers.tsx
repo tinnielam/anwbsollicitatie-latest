@@ -16,7 +16,8 @@ export default class JamsMarkers extends React.Component<Props> {
       fillOpacity: 1,
       scale: 0.03,
       strokeColor: "black",
-      strokeWeight: 3
+      strokeWeight: 3,
+      zIndex: 1000
     };
 
     return this.props.array.map(verkeersinformatie =>

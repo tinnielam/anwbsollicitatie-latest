@@ -42,13 +42,13 @@ export default class Polyline extends Component<Props> {
 
     geodesicPolyline.addListener("mouseover", function(event) {
       geodesicPolyline.setOptions({
-        strokeOpacity: 1
+        strokeOpacity: 0.5
       });
     });
 
     geodesicPolyline.addListener("mouseout", function(event) {
       geodesicPolyline.setOptions({
-        strokeOpacity: 0.5
+        strokeOpacity: 1
       });
     });
 

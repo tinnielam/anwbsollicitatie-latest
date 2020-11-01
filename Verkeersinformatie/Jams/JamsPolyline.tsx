@@ -16,7 +16,8 @@ export default class JamsPolyline extends React.Component<Props> {
       fillOpacity: 1,
       scale: 0.15,
       strokeColor: "black",
-      strokeweight: 3
+      strokeweight: 3,
+      zIndex: 1000
     };
 
     return this.props.array.map(verkeersinformatie =>

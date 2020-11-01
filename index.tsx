@@ -3,8 +3,8 @@ import { render } from "react-dom";
 import "./Verkeersinformatie/Styles/Verkeersinformatie.scss";
 import "./Verkeersinformatie/Styles/styles.scss";
 import Jams from "./Verkeersinformatie/Jams/VerkeersinformatieJams";
-import Roadworks from "./Verkeersinformatie/Radars/VerkeersinformatieRadars";
-import Radars from "./Verkeersinformatie/Roadworks/VerkeersinformatieRoadworks";
+import Radars from "./Verkeersinformatie/Radars/VerkeersinformatieRadars";
+import Roadworks from "./Verkeersinformatie/Roadworks/VerkeersinformatieRoadworks";
 import Map from "./GoogleMaps/GoogleMaps";
 
 render(<Map />, document.getElementById("map"));

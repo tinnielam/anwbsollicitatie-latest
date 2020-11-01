@@ -24,7 +24,6 @@ export default class GoogleMarkers extends Component<Props> {
 
     marker.addListener("click", () => {
       infowindow.open(this.props.map, marker);
-      marker.setAnimation(google.maps.Animation.BOUNCE);
     });
 
     marker.addListener("mouseover", function(event) {
