@@ -7,7 +7,23 @@
 	<meta http-equiv="Expires" content="0">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+	<style>
+		#wrapper {
+			position: relative;
+		}
+
+		#Jams {
+			position: absolute;
+			bottom: 0;
+      width:100%
+			z-index: 99;
+      background-color: coral
+		}
+	</style>
 </head>
+
+
 
 <body class="sb-nav-fixed">>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -40,10 +56,13 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-				<div id="map"></div>
-				<div id="Jams"></div>
-				<div id="Radars" hidden></div>
-				<div id="Roadworks" hidden></div>
+				<div id="wrapper">
+
+					<div id="map"></div>
+					<div id="Jams"></div>
+					<div id="Radars" hidden></div>
+					<div id="Roadworks" hidden></div>
+				</div>
 			</main>
 		</div>
 	</div>
