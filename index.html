@@ -9,7 +9,7 @@
 		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 	<style>
-		#wrapper {
+		.wrapper {
 			position: fixed;
 		}
 
@@ -26,6 +26,13 @@
 			max-height: 20vh;
 			overflow: auto;
 			padding: 1vh;
+		}
+
+
+		.jamsHeader,
+		.radarsHeader,
+		.roadworksHeader {
+			text-align: center;
 		}
 	</style>
 </head>
@@ -61,7 +68,7 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-				<div id="wrapper">
+				<div class="wrapper">
 					<div id="map"></div>
 					<div id="Jams"></div>
 					<div id="Radars"></div>

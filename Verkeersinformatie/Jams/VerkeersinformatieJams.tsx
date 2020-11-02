@@ -50,7 +50,9 @@ export default class VerkeersinformatieJams extends React.Component<
   public render(): JSX.Element {
     return (
       <div>
-        <h5 id="title">Actuele Files</h5>
+        <h5 id="title" className="jamsHeader">
+          Actuele Files
+        </h5>
         {this.renderTableDataJams()}
       </div>
     );

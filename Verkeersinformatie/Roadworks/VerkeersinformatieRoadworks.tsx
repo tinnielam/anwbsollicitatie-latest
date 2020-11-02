@@ -22,13 +22,18 @@ export default class VerkeersinformatieRoadworks extends React.Component {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks.map((key, index) => (
-          <tr key={key.id}>
-            <td>{key.road}</td>
-            <td>
-              {key.from} <i className="fas fa-arrow-right" /> {key.to}
-            </td>
-            <td>{key.reason}</td>
-          </tr>
+          <div className="cards">
+            <div className=" card [ is-collapsed ] ">
+              <div className="card__inner [ js-expander ]">
+                <span>{key.road}</span>
+                <i className="fa fa-folder-o" />
+              </div>
+              <div className="card__expander">
+                <i className="fa fa-close [ js-collapser ]" />
+                Expander
+              </div>
+            </div>
+          </div>
         ))
       )
     );
@@ -47,13 +52,10 @@ export default class VerkeersinformatieRoadworks extends React.Component {
   public render(): JSX.Element {
     return (
       <div>
-        <h5 id="title">Actuele Wegwerkzaamheden</h5>
-        <table id="verkeersinformatie">
-          <tbody>
-            {this.renderTableHeaderRoadworks()}
-            {this.renderTableDataRoadworks()}
-          </tbody>
-        </table>
+        <h5 id="title" className="roadworksHeader">
+          Actuele Wegwerkzaamheden
+        </h5>
+        <div id="verkeersinformatie">{this.renderTableDataRoadworks()}</div>
       </div>
     );
   }

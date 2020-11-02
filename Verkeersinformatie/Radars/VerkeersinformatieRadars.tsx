@@ -59,7 +59,9 @@ export default class VerkeersinformatieRadars extends React.Component<
   render(): JSX.Element {
     return (
       <div>
-        <h5 id="title">Actuele Flitsers</h5>
+        <h5 id="title" className="radarsHeader">
+          Actuele Flitsers
+        </h5>
         <table id="verkeersinformatie">
           <tbody>
             {this.renderTableHeaderRadars()}
