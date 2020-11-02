@@ -1,14 +1,13 @@
 $light-gray: #eceef1;
 $gray: darken(#eceef1, 30%);
 $slate: darken(#eceef1, 70%);
-$turquoise: #1abc9c;
+$turquoise: #0d77bd;
 
 * {
   box-sizing: border-box;
 }
 
 .wrapper {
-  max-width: 1000px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -35,8 +34,7 @@ $turquoise: #1abc9c;
 
 //Grid Container
 .cards {
-  padding: 15px;
-  display: flex;
+  display: inline-flex;
   flex-flow: row wrap;
 }
 
