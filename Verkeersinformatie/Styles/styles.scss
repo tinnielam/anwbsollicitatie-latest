@@ -10490,6 +10490,36 @@ body {
   transition: opacity 0.3s ease-in-out;
 }
 
+#Jams,
+#Radars,
+#Roadworks {
+  position: relative;
+  display: inline-block;
+  bottom: 0;
+  width: 33.3%;
+  height: 500px;
+  background-color: #212529;
+  color: white;
+  max-height: 23vh;
+  overflow: auto;
+  padding: 1vh;
+  float: left;
+  border-style: solid;
+  border-color: white;
+  border-width: thin;
+}
+
+#verkeersinformatie {
+  margin: auto;
+  width: 90%;
+}
+
+.jamsHeader,
+.radarsHeader,
+.roadworksHeader {
+  text-align: center;
+}
+
 @media (min-width: 992px) {
   #layoutSidenav #layoutSidenav_nav {
     transform: translateX(0);

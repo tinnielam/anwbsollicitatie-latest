@@ -13,7 +13,6 @@ interface State {
   verkeersinformatieRadars: Array<any>;
   map: object;
   maps: object;
-  state: any;
 }
 
 interface Props {
@@ -25,7 +24,6 @@ export default class GoogleMaps extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      state: null,
       verkeersinformatieJams: [],
       verkeersinformatieRoadworks: [],
       verkeersinformatieRadars: [],
