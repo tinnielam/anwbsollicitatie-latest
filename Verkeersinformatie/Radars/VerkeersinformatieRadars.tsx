@@ -22,9 +22,10 @@ export default class VerkeersinformatieRadars extends React.Component {
         segments.radars.map((key, index) => (
           <div>
             <button className="collapsible radars">
-              <i className="fas fa-chevron-down" /> {key.road}{" "}
+              <i className="fas fa-chevron-down" /> <b>{key.road}</b>{" "}
               <i className="fas fa-camera" /> {segments.start}{" "}
-              <i className="fas fa-arrow-right" /> {segments.end} {key.HM} HM
+              <i className="fas fa-arrow-right" /> {segments.end}{" "}
+              <b>{key.HM} HM</b>
             </button>
             <div className="content">
               <div>

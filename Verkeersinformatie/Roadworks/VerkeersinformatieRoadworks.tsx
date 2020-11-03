@@ -40,7 +40,7 @@ export default class VerkeersinformatieRoadworks extends React.Component {
         segments.roadworks.map((key, index) => (
           <div>
             <button className="collapsible roadworks">
-              <i className="fas fa-chevron-down" /> {key.road}{" "}
+              <i className="fas fa-chevron-down" /> <b>{key.road}</b>{" "}
               <i className="fas fa-tools" /> {segments.start}{" "}
               <i className="fas fa-arrow-right" /> {segments.end}
             </button>

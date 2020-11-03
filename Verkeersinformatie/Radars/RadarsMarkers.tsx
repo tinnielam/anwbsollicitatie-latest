@@ -32,7 +32,7 @@ export default class RadarsMarkers extends React.Component<Props> {
             contentString={`
     <div>
       <div style="font-size: 16px;">
-        ${locationRadars.road} <i class="fas fa-camera"></i> ${
+        <b> ${locationRadars.road} </b> <i class="fas fa-camera"></i> ${
               segments.start
             } <i class="fas fa-arrow-right"></i>  ${segments.end}
       </div>

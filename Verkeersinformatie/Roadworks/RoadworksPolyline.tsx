@@ -38,7 +38,7 @@ export default class RoadworksPolyline extends React.Component<Props> {
                 contentString={`
     <div>
       <div style="font-size: 16px;">
-        ${locationRoadworks.road} <i class="fas fa-tools"></i> ${
+       <b> ${locationRoadworks.road} </b> <i class="fas fa-tools"></i> ${
                   segments.start
                 } <i class="fas fa-arrow-right"></i>  ${segments.end}
       </div>

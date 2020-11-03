@@ -33,7 +33,7 @@ export default class JamsMarkers extends React.Component<Props> {
               contentString={`
     <div>
       <div style="font-size: 16px;">
-        ${locationJams.road} <i class="fas fa-cars"></i> ${
+        <b>${locationJams.road}</b> <i class="fas fa-cars"></i> ${
                 segments.start
               } <i class="fas fa-arrow-right"></i> ${segments.end}
       </div>

@@ -40,7 +40,9 @@ export default class JamsPolyline extends React.Component<Props> {
               lon={locationJams.fromLoc.lon}
               contentString={`<div>
       <div style="font-size: 16px;">
-        ${locationJams.road} <i class="fas fa-cars"></i> ${segments.start} 
+        <b> ${locationJams.road} </b> <i class="fas fa-cars"></i> ${
+                segments.start
+              } 
         <i class="fas fa-arrow-right"></i> ${segments.end}
       </div>
       <div style="font-size: 16px;">

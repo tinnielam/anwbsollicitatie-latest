@@ -22,7 +22,7 @@ export default class VerkeersinformatieJams extends React.Component {
         segments.jams.map((key, index) => (
           <div>
             <button className="collapsible jams">
-              <i className="fas fa-chevron-down" /> {key.road}{" "}
+              <i className="fas fa-chevron-down" /> <b>{key.road}</b>{" "}
               <i className="fas fa-cars" /> {segments.start}{" "}
               <i className="fas fa-arrow-right" /> {segments.end}{" "}
               {typeof key.distance !== "undefined"
