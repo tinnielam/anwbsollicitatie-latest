@@ -15,8 +15,11 @@ export default class VerkeersinformatieRoadworks extends React.Component {
     const anwbData = new AnwbData();
     anwbData
       .getAnwbData("roadworks")
-      .then(data => this.setState({ verkeersinformatie: data }));
+      .then(data => this.setState({ verkeersinformatie: data }))
+      .then(() => this.renderCards());
+  }
 
+  private renderCards() {
     const coll = document.getElementsByClassName("collapsible");
     for (let i = 0; i < coll.length; i++) {
       coll[i].addEventListener("click", function() {
@@ -42,10 +45,10 @@ export default class VerkeersinformatieRoadworks extends React.Component {
               <i className="fas fa-arrow-right" /> {segments.end}
             </button>
             <div className="content">
-              <p>
+              <div>
                 {key.from} <i className="fas fa-arrow-right" /> {key.to}
-                {key.reason}
-              </p>
+              </div>
+              <div>{key.reason}</div>
             </div>
           </div>
         ))

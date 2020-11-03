@@ -27,10 +27,10 @@ export default class VerkeersinformatieRadars extends React.Component {
               <i className="fas fa-arrow-right" /> {segments.end} {key.HM} HM
             </button>
             <div className="content">
-              <p>
+              <div>
                 {key.from} <i className="fas fa-arrow-right" /> {key.to}
-                {key.reason}
-              </p>
+              </div>
+              <div>{key.reason} HM</div>
             </div>
           </div>
         ))
