@@ -1,17 +1,8 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-interface State {
-  verkeersinformatie: Array<any>;
-}
-
-interface Props {}
-
-export default class VerkeersinformatieRadars extends React.Component<
-  Props,
-  State
-> {
-  constructor(props: Props) {
+export default class VerkeersinformatieRadars extends React.Component {
+  constructor(props: any) {
     super(props);
     this.state = {
       verkeersinformatie: []
@@ -31,7 +22,8 @@ export default class VerkeersinformatieRadars extends React.Component<
         segments.radars.map((key, index) => (
           <div>
             <button className="collapsible radars">
-              {key.road} <i className="fas fa-camera" /> {segments.start}{" "}
+              <i className="fas fa-chevron-down" /> {key.road}{" "}
+              <i className="fas fa-camera" /> {segments.start}{" "}
               <i className="fas fa-arrow-right" /> {segments.end} {key.HM} HM
             </button>
             <div className="content">

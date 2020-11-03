@@ -1,17 +1,8 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-interface State {
-  verkeersinformatie: Array<any>;
-}
-
-interface Props {}
-
-export default class VerkeersinformatieJams extends React.Component<
-  Props,
-  State
-> {
-  constructor(props: Props) {
+export default class VerkeersinformatieJams extends React.Component {
+  constructor(props: any) {
     super(props);
     this.state = {
       verkeersinformatie: []
@@ -25,23 +16,26 @@ export default class VerkeersinformatieJams extends React.Component<
       .then(data => this.setState({ verkeersinformatie: data }));
   }
 
-  private renderTableDataJams() {
+  private renderTableDataJams(): JSX.Element {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams.map((key, index) => (
-          <tr key={key.id}>
-            <td>{key.road}</td>
-            <td>
-              {segments.start} <i className="fas fa-arrow-right" />{" "}
-              {segments.end}
-            </td>
-            <td>
-              {key.from} <i className="fas fa-arrow-right" /> {key.to}
-            </td>
-            <td>{key.reason}</td>
-            <td>{key.distance / 1000 + " KM"}</td>
-            <td>{key.delay / 60 + " min"}</td>
-          </tr>
+          <div>
+            <button className="collapsible jams">
+              <i className="fas fa-chevron-down" /> {key.road}{" "}
+              <i className="fas fa-cars" /> {segments.start}{" "}
+              <i className="fas fa-arrow-right" /> {segments.end}{" "}
+              {key.distance / 1000 + " KM"} {key.delay / 60 + " min"}
+            </button>
+            <div className="content">
+              <p>
+                {segments.end} {key.distance / 1000 + " KM"}{" "}
+                {key.delay / 60 + " min"}
+                {key.from} <i className="fas fa-arrow-right" /> {key.to}
+                {key.reason}
+              </p>
+            </div>
+          </div>
         ))
       )
     );
@@ -53,7 +47,7 @@ export default class VerkeersinformatieJams extends React.Component<
         <h5 id="title" className="jamsHeader">
           Actuele Files
         </h5>
-        {this.renderTableDataJams()}
+        <div id="verkeersinformatie">{this.renderTableDataJams()}</div>
       </div>
     );
   }
