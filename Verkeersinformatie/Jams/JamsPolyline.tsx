@@ -38,16 +38,22 @@ export default class JamsPolyline extends React.Component<Props> {
               }
               lat={locationJams.fromLoc.lat}
               lon={locationJams.fromLoc.lon}
-              contentString={`
-    <div>
+              contentString={`<div>
       <div style="font-size: 16px;">
-        ${locationJams.road} <i class="fas fa-cars"></i> ${
-                segments.start
-              } <i class="fas fa-arrow-right"></i> ${segments.end}
+        ${locationJams.road} <i class="fas fa-cars"></i> ${segments.start} 
+        <i class="fas fa-arrow-right"></i> ${segments.end}
       </div>
-                  <div style="font-size: 16px;">
+      <div style="font-size: 16px;">
         <span style="color: grey;">
-${locationJams.delay / 60 + " min"} ${locationJams.distance / 1000 + " KM"}
+  ${
+    typeof locationJams.delay !== "undefined"
+      ? locationJams.delay / 60 + " min"
+      : ""
+  } ${
+                typeof locationJams.distance !== "undefined"
+                  ? locationJams.distance / 1000 + " KM"
+                  : ""
+              }
                 </span>
       </div>
       <div style="font-size: 14px;">
@@ -58,7 +64,7 @@ ${locationJams.delay / 60 + " min"} ${locationJams.distance / 1000 + " KM"}
         </span>
       </div>
       <div style="font-size: 14px; color: green;">
-        ${locationJams.reason}
+        ${typeof locationJams.reason !== "undefined" ? locationJams.reason : ""}
       </div>
     </div>`}
               markers={google.maps.geometry.encoding.decodePath(

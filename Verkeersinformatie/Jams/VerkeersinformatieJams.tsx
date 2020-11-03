@@ -25,14 +25,18 @@ export default class VerkeersinformatieJams extends React.Component {
               <i className="fas fa-chevron-down" /> {key.road}{" "}
               <i className="fas fa-cars" /> {segments.start}{" "}
               <i className="fas fa-arrow-right" /> {segments.end}{" "}
-              {key.distance / 1000 + " KM"} {key.delay / 60 + " min"}
+              {typeof key.distance !== "undefined"
+                ? key.distance / 1000 + " KM"
+                : ""}{" "}
+              {typeof key.delay !== "undefined" ? key.delay / 60 + " min" : ""}
             </button>
             <div className="content">
               <p>
                 {segments.end} {key.distance / 1000 + " KM"}{" "}
                 {key.delay / 60 + " min"}
                 {key.from} <i className="fas fa-arrow-right" /> {key.to}
-                {key.reason}
+                {typeof key.reason !== "undefined"
+                ? key.reason: ""}
               </p>
             </div>
           </div>
