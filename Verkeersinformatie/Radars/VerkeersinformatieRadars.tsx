@@ -25,34 +25,24 @@ export default class VerkeersinformatieRadars extends React.Component<
       .then(data => this.setState({ verkeersinformatie: data }));
   }
 
-  private renderTableDataRadars(): Array<string> {
+  private renderRoadworksData(): JSX.Element {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map((key, index) => (
-          <tr key={key.id}>
-            <td>{key.road}</td>
-            <td>
-              {segments.start} <i className="fas fa-arrow-right" />{" "}
-              {segments.end}
-            </td>
-            <td>
-              {key.from} <i className="fas fa-arrow-right" /> {key.to}
-            </td>
-            <td>{key.reason}</td>
-          </tr>
+          <div>
+            <button className="collapsible radars">
+              {key.road} <i className="fas fa-camera" /> {segments.start}{" "}
+              <i className="fas fa-arrow-right" /> {segments.end} {key.HM} HM
+            </button>
+            <div className="content">
+              <p>
+                {key.from} <i className="fas fa-arrow-right" /> {key.to}
+                {key.reason}
+              </p>
+            </div>
+          </div>
         ))
       )
-    );
-  }
-
-  private renderTableHeaderRadars() {
-    return (
-      <tr>
-        <th>Rijksweg</th>
-        <th>Traject</th>
-        <th>Route</th>
-        <th>Reden</th>
-      </tr>
     );
   }
 
@@ -62,12 +52,7 @@ export default class VerkeersinformatieRadars extends React.Component<
         <h5 id="title" className="radarsHeader">
           Actuele Flitsers
         </h5>
-        <table id="verkeersinformatie">
-          <tbody>
-            {this.renderTableHeaderRadars()}
-            {this.renderTableDataRadars()}
-          </tbody>
-        </table>
+        <div id="verkeersinformatie">{this.renderRoadworksData()}</div>
       </div>
     );
   }

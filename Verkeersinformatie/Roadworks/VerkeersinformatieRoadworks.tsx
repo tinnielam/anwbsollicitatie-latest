@@ -18,34 +18,24 @@ export default class VerkeersinformatieRoadworks extends React.Component {
       .then(data => this.setState({ verkeersinformatie: data }));
   }
 
-  private renderTableDataRoadworks(): JSX.Element {
+  private renderRoadworksData(): JSX.Element {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks.map((key, index) => (
-          <div className="cards">
-            <div className=" card [ is-collapsed ] ">
-              <div className="card__inner [ js-expander ]">
-                <span>{key.road}</span>
-                <i className="fa fa-folder-o" />
-              </div>
-              <div className="card__expander">
-                <i className="fa fa-close [ js-collapser ]" />
-                Expander
-              </div>
+          <div>
+            <button className="collapsible roadworks">
+              {key.road} <i className="fas fa-tools" /> {segments.start}{" "}
+              <i className="fas fa-arrow-right" /> {segments.end}
+            </button>
+            <div className="content">
+              <p>
+                {key.from} <i className="fas fa-arrow-right" /> {key.to}
+                {key.reason}
+              </p>
             </div>
           </div>
         ))
       )
-    );
-  }
-
-  private renderTableHeaderRoadworks(): JSX.Element {
-    return (
-      <tr>
-        <th>Rijksweg</th>
-        <th>Route</th>
-        <th>Reden</th>
-      </tr>
     );
   }
 
@@ -55,7 +45,7 @@ export default class VerkeersinformatieRoadworks extends React.Component {
         <h5 id="title" className="roadworksHeader">
           Actuele Wegwerkzaamheden
         </h5>
-        <div id="verkeersinformatie">{this.renderTableDataRoadworks()}</div>
+        <div id="verkeersinformatie">{this.renderRoadworksData()}</div>
       </div>
     );
   }

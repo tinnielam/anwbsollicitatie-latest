@@ -10501,25 +10501,28 @@ body {
   background-color: #212529;
   color: white;
   max-height: 23vh;
-  padding: 1vh;
   float: left;
   border-style: solid;
   border-color: white;
   border-width: thin;
+  overflow: auto;
 }
 
 #verkeersinformatie {
   margin: auto;
   width: 90%;
+  padding-left: 2vh;
+  padding-top: 6vh;
 }
 
 .jamsHeader,
 .radarsHeader,
 .roadworksHeader {
   text-align: center;
-  border-bottom: inset;
-  border-width: thin;
   padding: 1vh;
+  z-index: 1;
+  position: fixed;
+  width: 30%;
 }
 
 .jamsHeader {
@@ -10553,8 +10556,18 @@ body {
 }
 
 .roadworksHeader {
-background: rgb(72,72,72);
-background: linear-gradient(138deg, rgba(72,72,72,1) 0%, rgba(72,72,72,1) 28%, rgba(72,72,72,1) 51%, rgba(72,72,72,1) 61%, rgba(72,72,72,1) 67%, rgba(162,162,162,1) 80%, rgba(72,72,72,1) 91%, rgba(72,72,72,1) 100%);
+  background: rgb(72, 72, 72);
+  background: linear-gradient(
+    138deg,
+    rgba(72, 72, 72, 1) 0%,
+    rgba(72, 72, 72, 1) 28%,
+    rgba(72, 72, 72, 1) 51%,
+    rgba(72, 72, 72, 1) 61%,
+    rgba(72, 72, 72, 1) 67%,
+    rgba(162, 162, 162, 1) 80%,
+    rgba(72, 72, 72, 1) 91%,
+    rgba(72, 72, 72, 1) 100%
+  );
 }
 
 @media (min-width: 992px) {
