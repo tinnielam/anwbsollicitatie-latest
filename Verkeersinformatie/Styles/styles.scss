@@ -10518,6 +10518,46 @@ body {
 .radarsHeader,
 .roadworksHeader {
   text-align: center;
+  border-bottom: inset;
+  border-width: thin;
+  -webkit-box-shadow: -3px 0px 25px 0px #ffffff;
+  box-shadow: -3px 0px 25px 0px #ffffff;
+  padding: 1vh;
+}
+
+.jamsHeader {
+  background: rgb(233, 12, 12);
+  background: linear-gradient(
+    138deg,
+    rgba(233, 12, 12, 1) 0%,
+    rgba(230, 6, 6, 1) 28%,
+    rgba(245, 67, 36, 1) 51%,
+    rgba(242, 61, 33, 1) 61%,
+    rgba(235, 44, 44, 1) 67%,
+    rgba(249, 114, 114, 1) 80%,
+    rgba(222, 16, 16, 1) 91%,
+    rgba(232, 12, 12, 1) 100%
+  );
+}
+
+.radarsHeader {
+  background: rgb(99, 99, 235);
+  background: linear-gradient(
+    138deg,
+    rgba(99, 99, 235, 1) 0%,
+    rgba(99, 99, 235, 1) 28%,
+    rgba(99, 99, 235, 1) 51%,
+    rgba(99, 99, 235, 1) 61%,
+    rgba(99, 99, 235, 1) 67%,
+    rgba(166, 166, 231, 1) 80%,
+    rgba(99, 99, 235, 1) 91%,
+    rgba(99, 99, 235, 1) 100%
+  );
+}
+
+.roadworksHeader {
+background: rgb(72,72,72);
+background: linear-gradient(138deg, rgba(72,72,72,1) 0%, rgba(72,72,72,1) 28%, rgba(72,72,72,1) 51%, rgba(72,72,72,1) 61%, rgba(72,72,72,1) 67%, rgba(162,162,162,1) 80%, rgba(72,72,72,1) 91%, rgba(72,72,72,1) 100%);
 }
 
 @media (min-width: 992px) {
