@@ -49,10 +49,21 @@ Daarnaast heb ik nog even op Lynda/Linkedin de tijd genomen om wat Typescript re
 
 Hiermee heb ik wat betreft de requirements voor opdracht:
 
-3a, 3b, 3d gedeeltelijk mee afgedekt en natuurlijk nog wat extra dingen voor puntje 4.
+3a, 3b, 3d mee afgedekt en natuurlijk nog wat extra dingen voor puntje 4.
 
 Voor meer informatie over mijn werkwijze: "zie mijn AzureBoards"
 
+Voor documentatie en referenties zie:
 
-
+https://www.linkedin.com/learning/sass-essential-training
+https://www.linkedin.com/learning/react-using-typescript
+https://www.linkedin.com/learning/typescript-object-oriented-programming
+https://www.linkedin.com/learning/paths/become-a-react-developer
+https://www.linkedin.com/learning/implementing-an-information-security-program
+https://developers.google.com/maps/documentation/javascript/markers
+https://developers.google.com/maps/documentation/javascript/custom-markers
+https://developers.google.com/maps/documentation/javascript/examples/polyline-simple
+https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+https://github.com/google-map-react/google-map-react
+https://github.com/google-map-react/google-map-react-examples
 
