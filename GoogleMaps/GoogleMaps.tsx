@@ -8,9 +8,9 @@ import JamsMarkers from "../Verkeersinformatie/Jams/JamsMarkers";
 import RadarsMarkers from "../Verkeersinformatie/Radars/RadarsMarkers";
 
 interface State {
-  verkeersinformatieJams: Array<any>;
-  verkeersinformatieRoadworks: Array<any>;
-  verkeersinformatieRadars: Array<any>;
+  verkeersinformatieJams: Array<string>;
+  verkeersinformatieRoadworks: Array<string>;
+  verkeersinformatieRadars: Array<string>;
   map: object;
   maps: object;
 }

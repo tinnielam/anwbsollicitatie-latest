@@ -5,7 +5,7 @@ interface Props {
   map: any;
   maps: any;
   polylineColor: string;
-  icon: any;
+  icon: string;
   contentString: string;
   lat: number;
   lon: number;

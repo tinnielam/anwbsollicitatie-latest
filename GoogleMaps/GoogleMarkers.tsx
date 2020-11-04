@@ -6,7 +6,7 @@ interface Props {
   lat: string;
   lon: string;
   contentString: string;
-  icon: any;
+  icon: string;
   id: string;
 }
 
