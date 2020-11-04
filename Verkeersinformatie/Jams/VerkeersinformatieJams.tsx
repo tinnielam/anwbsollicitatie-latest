@@ -1,6 +1,5 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
-import "rxjs/add/operator/map";
 
 interface Props {}
 
