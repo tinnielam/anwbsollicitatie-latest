@@ -44,7 +44,7 @@ export default class GoogleMarkers extends Component<Props> {
         opacity: 1
       });
     });
-   
+
     this.props.maps.event.addListener(this.props.map, "click", () => {
       marker.setAnimation(null);
       infowindow.close();

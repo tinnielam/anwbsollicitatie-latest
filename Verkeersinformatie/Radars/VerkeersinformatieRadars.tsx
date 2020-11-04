@@ -57,7 +57,7 @@ export default class VerkeersinformatieRadars extends React.Component<
       <div>
         <h5 id="title" className="radarsHeader">
           {this.state.totalRadars <= 1
-            ? this.state.totalRadars + "Flitser"
+            ? this.state.totalRadars + " Flitser"
             : this.state.totalRadars == 0
             ? "Er zijn momenteel geen Flitsers"
             : this.state.totalRadars + " Flitsers"}

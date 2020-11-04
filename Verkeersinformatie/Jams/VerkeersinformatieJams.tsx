@@ -69,7 +69,7 @@ export default class VerkeersinformatieJams extends React.Component<
       <div>
         <h5 id="title" className="jamsHeader">
           {this.state.totalJams <= 1
-            ? this.state.totalJams + "File"
+            ? this.state.totalJams + " File"
             : this.state.totalJams == 0
             ? "Er zijn momenteel geen Files"
             : this.state.totalJams + " Files"}

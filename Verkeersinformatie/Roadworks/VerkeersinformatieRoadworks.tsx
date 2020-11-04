@@ -72,7 +72,7 @@ export default class VerkeersinformatieRoadworks extends React.Component<
       <div>
         <h5 id="title" className="roadworksHeader">
           {this.state.totalRoadworks <= 1
-            ? this.state.totalRoadworks + "Wegwerk"
+            ? this.state.totalRoadworks + " Wegwerk"
             : this.state.totalRoadworks == 0
             ? "Er zijn momenteel geen Wegwerkzaamheden"
             : this.state.totalRoadworks + " Wegwerkzaamheden"}
