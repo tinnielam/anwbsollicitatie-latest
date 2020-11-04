@@ -29,8 +29,9 @@ export default class RadarsMarkers extends React.Component<Props> {
             maps={this.props.maps}
             lat={locationRadars.fromLoc.lat}
             lon={locationRadars.fromLoc.lon}
+            id={locationRadars.id}
             contentString={`
-    <div class="${locationRadars.id}">
+    <div id="${locationRadars.id}">
       <div style="font-size: 16px;">
         <b> ${locationRadars.road} </b> <i class="fas fa-camera"></i> ${
               segments.start

@@ -35,8 +35,9 @@ export default class RoadworksPolyline extends React.Component<Props> {
                 polylineColor={"#484848"}
                 lat={locationRoadworks.fromLoc.lat}
                 lon={locationRoadworks.fromLoc.lon}
+                id={locationRoadworks.id}
                 contentString={`
-    <div class="${locationRoadworks.id}">
+    <div id="${locationRoadworks.id}">
       <div style="font-size: 16px;">
        <b> ${locationRoadworks.road} </b> <i class="fas fa-tools"></i> ${
                   segments.start

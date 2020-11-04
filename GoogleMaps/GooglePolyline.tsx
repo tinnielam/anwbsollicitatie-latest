@@ -9,6 +9,7 @@ interface Props {
   contentString: string;
   lat: number;
   lon: number;
+  id: string;
 }
 
 export default class Polyline extends Component<Props> {
@@ -18,6 +19,7 @@ export default class Polyline extends Component<Props> {
       geodesic: true,
       strokeColor: this.props.polylineColor,
       map: this.props.map,
+      id: this.props.id,
       icons: [
         {
           icon: this.props.icon,
@@ -37,23 +39,31 @@ export default class Polyline extends Component<Props> {
     });
 
     geodesicPolyline.addListener("click", () => {
+      let getVerkeersinformatieCardsDiv = document.getElementById(
+        this.props.id.toString()
+      );
       infowindow.open(this.props.map, geodesicPolyline);
+      getVerkeersinformatieCardsDiv.click();
+      getVerkeersinformatieCardsDiv.focus();
     });
 
-    geodesicPolyline.addListener("mouseover", function(event) {
+    geodesicPolyline.addListener("mouseover", () => {
       geodesicPolyline.setOptions({
         strokeOpacity: 0.5
       });
     });
 
-    geodesicPolyline.addListener("mouseout", function(event) {
+    geodesicPolyline.addListener("mouseout", () => {
       geodesicPolyline.setOptions({
         strokeOpacity: 1
       });
     });
 
-    this.props.maps.event.addListener(this.props.map, "click", function(event) {
+    this.props.maps.event.addListener(this.props.map, "click", () => {
       infowindow.close();
+      document
+        .getElementById(this.props.id.toString() + "child")
+        .removeAttribute("style");
     });
   }
 

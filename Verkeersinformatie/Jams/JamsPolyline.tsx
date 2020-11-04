@@ -29,6 +29,7 @@ export default class JamsPolyline extends React.Component<Props> {
               map={this.props.map}
               maps={this.props.maps}
               icon={symbolJams}
+              id={locationJams.id}
               polylineColor={
                 locationJams.delay >= 300 && locationJams.delay < 600
                   ? "#FFA500"
@@ -38,7 +39,7 @@ export default class JamsPolyline extends React.Component<Props> {
               }
               lat={locationJams.fromLoc.lat}
               lon={locationJams.fromLoc.lon}
-              contentString={`<div class="${locationJams.id}">
+              contentString={`<div id="${locationJams.id}">
       <div style="font-size: 16px;">
         <b> ${locationJams.road} </b> <i class="fas fa-cars"></i> ${
                 segments.start

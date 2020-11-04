@@ -38,13 +38,13 @@ export default class VerkeersinformatieRoadworks extends React.Component {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks.map((key, index) => (
-          <div className={key.id}>
-            <button className="collapsible roadworks">
+          <div>
+            <button className="collapsible roadworks" id={key.id}>
               <i className="fas fa-chevron-down" /> <b>{key.road}</b>{" "}
               <i className="fas fa-tools" /> {segments.start}{" "}
               <i className="fas fa-arrow-right" /> {segments.end}
             </button>
-            <div className="content">
+            <div className="content" id={key.id + "child"}>
               <div>
                 {key.from} <i className="fas fa-arrow-right" /> {key.to}
               </div>

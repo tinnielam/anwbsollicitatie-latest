@@ -7,6 +7,7 @@ interface Props {
   lon: string;
   contentString: string;
   icon: any;
+  id: string;
 }
 
 export default class GoogleMarkers extends Component<Props> {
@@ -15,7 +16,8 @@ export default class GoogleMarkers extends Component<Props> {
       position: { lat: this.props.lat, lng: this.props.lon },
       map: this.props.map,
       icon: this.props.icon,
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
+      id: this.props.id
     });
 
     const infowindow = new google.maps.InfoWindow({
@@ -23,24 +25,32 @@ export default class GoogleMarkers extends Component<Props> {
     });
 
     marker.addListener("click", () => {
+      let getVerkeersinformatieCardsDiv = document.getElementById(
+        this.props.id.toString()
+      );
       infowindow.open(this.props.map, marker);
+      getVerkeersinformatieCardsDiv.click();
+      getVerkeersinformatieCardsDiv.focus();
     });
 
-    marker.addListener("mouseover", function(event) {
+    marker.addListener("mouseover", () => {
       marker.setOptions({
         opacity: 0.3
       });
     });
 
-    marker.addListener("mouseout", function(event) {
+    marker.addListener("mouseout", () => {
       marker.setOptions({
         opacity: 1
       });
     });
 
-    this.props.maps.event.addListener(this.props.map, "click", function(event) {
+    this.props.maps.event.addListener(this.props.map, "click", () => {
       marker.setAnimation(null);
       infowindow.close();
+      document
+        .getElementById(this.props.id.toString() + "child")
+        .removeAttribute("style");
     });
   }
 
