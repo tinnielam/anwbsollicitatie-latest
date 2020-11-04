@@ -20,7 +20,7 @@ export default class VerkeersinformatieRadars extends React.Component {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map((key, index) => (
-          <div>
+          <div className={key.id}>
             <button className="collapsible radars">
               <i className="fas fa-chevron-down" /> <b>{key.road}</b>{" "}
               <i className="fas fa-camera" /> {segments.start}{" "}

@@ -20,7 +20,7 @@ export default class VerkeersinformatieJams extends React.Component {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams.map((key, index) => (
-          <div>
+          <div className={key.id}>
             <button className="collapsible jams">
               <i className="fas fa-chevron-down" /> <b>{key.road}</b>{" "}
               <i className="fas fa-cars" /> {segments.start}{" "}

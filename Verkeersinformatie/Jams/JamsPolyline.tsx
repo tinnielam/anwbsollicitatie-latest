@@ -38,14 +38,14 @@ export default class JamsPolyline extends React.Component<Props> {
               }
               lat={locationJams.fromLoc.lat}
               lon={locationJams.fromLoc.lon}
-              contentString={`<div>
+              contentString={`<div class="${locationJams.id}">
       <div style="font-size: 16px;">
         <b> ${locationJams.road} </b> <i class="fas fa-cars"></i> ${
                 segments.start
               } 
         <i class="fas fa-arrow-right"></i> ${segments.end}
-      </div>
-      <div style="font-size: 16px;">
+          </div>
+          <div style="font-size: 16px;">
         <span style="color: grey;">
   ${
     typeof locationJams.delay !== "undefined"
