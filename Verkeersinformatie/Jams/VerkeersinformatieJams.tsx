@@ -1,10 +1,15 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
+import "rxjs/add/operator/map";
 
 interface Props {}
 
+interface IverkeersinformatieJams {
+  segments: Array<any>;
+}
+
 interface State {
-  verkeersinformatie: Array<any>;
+  verkeersinformatie: Array<IverkeersinformatieJams>;
   totalJams: number;
 }
 
