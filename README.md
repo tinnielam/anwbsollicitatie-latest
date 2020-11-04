@@ -15,6 +15,9 @@ De Google Maps File had wel iets generieker gemogen....
 
 #Grote Update :
 
+Let Op: Het kan wel eens zijn dat de iconen niet laden, want het komt wel eens voor dat repl.it een schop nodig heeft om op gang te komen.
+Refreshen kan wel eens helpen.
+
 Polylines werken nu enkel via een workaround die de developer heeft aangekaart.
 Dit is enkel mogelijk door de api direct aan te spreken en deze moet worden geinclude in de Google-Map-React Component
         <GoogleMapReact
