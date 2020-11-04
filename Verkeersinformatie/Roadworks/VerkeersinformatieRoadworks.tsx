@@ -1,13 +1,22 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-export default class VerkeersinformatieRoadworks extends React.Component {
-  constructor(props: any) {
+interface Props {}
+
+interface State {
+  verkeersinformatie: Array<any>;
+  totalRoadworks: number;
+}
+
+export default class VerkeersinformatieRoadworks extends React.Component<
+  Props,
+  State
+> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
-      verkeersinformatie: []
+      verkeersinformatie: [],
+      totalRoadworks: null
     };
   }
 
@@ -15,7 +24,9 @@ export default class VerkeersinformatieRoadworks extends React.Component {
     const anwbData = new AnwbData();
     anwbData
       .getAnwbData("roadworks")
-      .then(data => this.setState({ verkeersinformatie: data }))
+      .then(data =>
+        this.setState({ verkeersinformatie: data, totalRoadworks: data.length })
+      )
       .then(() => this.renderCards());
   }
 
@@ -34,7 +45,7 @@ export default class VerkeersinformatieRoadworks extends React.Component {
     }
   }
 
-  private renderRoadworksData(): JSX.Element {
+  private renderRoadworksData() {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks.map((key, index) => (
@@ -60,7 +71,11 @@ export default class VerkeersinformatieRoadworks extends React.Component {
     return (
       <div>
         <h5 id="title" className="roadworksHeader">
-          Actuele Wegwerkzaamheden
+          {this.state.totalRoadworks <= 1
+            ? this.state.totalRoadworks + "Wegwerk"
+            : this.state.totalRoadworks == 0
+            ? "Er zijn momenteel geen Wegwerkzaamheden"
+            : this.state.totalRoadworks + " Wegwerkzaamheden"}
         </h5>
         <div id="verkeersinformatie">{this.renderRoadworksData()}</div>
       </div>

@@ -1,11 +1,22 @@
 import React from "react";
 import AnwbData from "../../Data/AnwbData";
 
-export default class VerkeersinformatieRadars extends React.Component {
-  constructor(props: any) {
+interface Props {}
+
+interface State {
+  verkeersinformatie: Array<any>;
+  totalRadars: number;
+}
+
+export default class VerkeersinformatieRadars extends React.Component<
+  Props,
+  State
+> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      verkeersinformatie: []
+      verkeersinformatie: [],
+      totalRadars: null
     };
   }
 
@@ -13,10 +24,12 @@ export default class VerkeersinformatieRadars extends React.Component {
     const anwbData = new AnwbData();
     anwbData
       .getAnwbData("radars")
-      .then(data => this.setState({ verkeersinformatie: data }));
+      .then(data =>
+        this.setState({ verkeersinformatie: data, totalRadars: data.length })
+      );
   }
 
-  private renderRoadworksData(): JSX.Element {
+  private renderRoadworksData() {
     return this.state.verkeersinformatie.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map((key, index) => (
@@ -43,7 +56,11 @@ export default class VerkeersinformatieRadars extends React.Component {
     return (
       <div>
         <h5 id="title" className="radarsHeader">
-          Actuele Flitsers
+          {this.state.totalRadars <= 1
+            ? this.state.totalRadars + "Flitser"
+            : this.state.totalRadars == 0
+            ? "Er zijn momenteel geen Flitsers"
+            : this.state.totalRadars + " Flitsers"}
         </h5>
         <div id="verkeersinformatie">{this.renderRoadworksData()}</div>
       </div>

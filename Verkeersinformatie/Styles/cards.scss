@@ -59,6 +59,8 @@
 .active,
 .collapsible:hover {
   background-color: #555;
+  -webkit-box-shadow: -4px 6px 15px 5px rgba(117, 117, 117, 0.65);
+  box-shadow: -4px 6px 15px 5px rgba(117, 117, 117, 0.65);
 }
 
 .content {
