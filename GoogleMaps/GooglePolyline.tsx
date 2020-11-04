@@ -59,6 +59,15 @@ export default class Polyline extends Component<Props> {
       });
     });
 
+    setTimeout(() => {
+      document
+        .getElementById(this.props.id.toString())
+        .addEventListener("click", () => {
+          infowindow.open(this.props.map, geodesicPolyline);
+          this.props.map.setZoom(12);
+        });
+    }, 1000);
+
     this.props.maps.event.addListener(this.props.map, "click", () => {
       infowindow.close();
       document

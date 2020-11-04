@@ -4,7 +4,7 @@ import Polyline from "../../GoogleMaps/GooglePolyline";
 interface Props {
   map: any;
   maps: any;
-  array: Array<any>;
+  verkeersinformatieJams: Array<any>;
 }
 
 export default class JamsPolyline extends React.Component<Props> {
@@ -20,7 +20,7 @@ export default class JamsPolyline extends React.Component<Props> {
       zIndex: 1000
     };
 
-    return this.props.array.map(verkeersinformatie =>
+    return this.props.verkeersinformatieJams.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.jams
           .filter(jams => typeof jams.polyline !== "undefined")

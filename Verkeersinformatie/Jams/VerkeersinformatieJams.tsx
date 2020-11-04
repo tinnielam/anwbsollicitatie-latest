@@ -4,7 +4,7 @@ import AnwbData from "../../Data/AnwbData";
 interface Props {}
 
 interface State {
-  verkeersinformatie: Array<object>;
+  verkeersinformatie: Array<any>;
   totalJams: number;
 }
 

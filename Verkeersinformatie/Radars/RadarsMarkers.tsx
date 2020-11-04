@@ -4,7 +4,7 @@ import Markers from "../../GoogleMaps/GoogleMarkers";
 interface Props {
   map: any;
   maps: any;
-  array: Array<any>;
+  verkeersinformatieRadars: Array<any>;
   contentString?: any;
 }
 
@@ -21,7 +21,7 @@ export default class RadarsMarkers extends React.Component<Props> {
       zIndex: 1000
     };
 
-    return this.props.array.map(verkeersinformatie =>
+    return this.props.verkeersinformatieRadars.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.radars.map(locationRadars => (
           <Markers

@@ -4,7 +4,7 @@ import Markers from "../../GoogleMaps/GoogleMarkers";
 interface Props {
   map: any;
   maps: any;
-  array: Array<any>;
+  verkeersinformatieRoadworks: Array<any>;
   contentString?: any;
 }
 
@@ -22,7 +22,7 @@ export default class RoadworksMarkers extends React.Component<Props> {
       zIndex: 1000
     };
 
-    return this.props.array.map(verkeersinformatie =>
+    return this.props.verkeersinformatieRoadworks.map(verkeersinformatie =>
       verkeersinformatie.segments.map(segments =>
         segments.roadworks
           .filter(

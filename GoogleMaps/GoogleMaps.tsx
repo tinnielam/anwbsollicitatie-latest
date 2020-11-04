@@ -79,27 +79,31 @@ export default class GoogleMaps extends React.Component<Props, State> {
         >
           <div style={{ display: "none" }}>
             <JamsPolyline
-              array={this.state.verkeersinformatieJams}
+              verkeersinformatieJams={this.state.verkeersinformatieJams}
               map={this.state.map}
               maps={this.state.maps}
             />
             <RoadworksPolyline
-              array={this.state.verkeersinformatieRoadworks}
+              verkeersinformatieRoadworks={
+                this.state.verkeersinformatieRoadworks
+              }
               map={this.state.map}
               maps={this.state.maps}
             />
             <RoadworksMarkers
-              array={this.state.verkeersinformatieRoadworks}
+              verkeersinformatieRoadworks={
+                this.state.verkeersinformatieRoadworks
+              }
               map={this.state.map}
               maps={this.state.maps}
             />
             <JamsMarkers
-              array={this.state.verkeersinformatieJams}
+              verkeersinformatieJams={this.state.verkeersinformatieJams}
               map={this.state.map}
               maps={this.state.maps}
             />
             <RadarsMarkers
-              array={this.state.verkeersinformatieRadars}
+              verkeersinformatieRadars={this.state.verkeersinformatieRadars}
               map={this.state.map}
               maps={this.state.maps}
             />

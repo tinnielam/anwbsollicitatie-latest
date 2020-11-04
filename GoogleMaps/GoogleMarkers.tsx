@@ -45,6 +45,15 @@ export default class GoogleMarkers extends Component<Props> {
       });
     });
 
+    setTimeout(() => {
+      document
+        .getElementById(this.props.id.toString())
+        .addEventListener("click", () => {
+          infowindow.open(this.props.map, marker);
+          this.props.map.setZoom(12);
+        });
+    }, 1000);
+
     this.props.maps.event.addListener(this.props.map, "click", () => {
       marker.setAnimation(null);
       infowindow.close();
