@@ -15,6 +15,41 @@ De Google Maps File had wel iets generieker gemogen....
 
 #Grote Update :
 
+Polylines werken nu enkel via een workaround die de developer heeft aangekaart.
+Dit is enkel mogelijk door de api direct aan te spreken en deze moet worden geinclude in de Google-Map-React Component
+        <GoogleMapReact
+          bootstrapURLKeys={{
+            key: "AIzaSyCVaY96z82QyROvA7BvgOLIZs_rtkWeD2A",
+            libraries: ["geometry"]
+          }};
+<GoogleMapReact/>
+
+Bij Deze kan de library tijdig worden geladen en is hierdoor de html script tag met de library erin niet van toepassing.
+Vervolgens kan er door middel van de map functie de juiste polyline worden decode en hierdoor worden er nu wel lijnen op de kaart getekend.
+Naast de lijnen zijn er ook gebruiksvriendelijke opties toegevoegd aan de kaart namelijk:
+
+- Custom icons
+- InfowWindow's (gestyled)
+- Kleuren van polylines voor specifieke files
+- Hover effecten voor Markers, Polylines en de lijst met files.
+- Synchrone klik effecten tussen de lijst en de iconen & polylines.
+- Totaal aantal files, Flitsers en wegwerkzaamheden.
+- ZoomEffect wanneer er op de kaarten worden geklikt.
+- Eventlisteners toegevoegd voor de animaties van specifieke markers en polylines
+
+Er zijn nog wijzigingen in de code gemaakt om de kaart sneller te laten laden.
+Er zit namelijk een fout in de library die het laden van de iconen en polylines extreem traag maken.
+Door een div met een display: none erin te zetten, is dit probleem verholpen.
+
+Op basis van deze veranderingen heb ik toch extra tijd besteed aan het bestuderen van de Google-Map-React API en de API op Google Maps zelf.
+Daarnaast heb ik nog even op Lynda/Linkedin de tijd genomen om wat Typescript react toe te passen.
+
+Hiermee heb ik wat betreft de requirements voor opdracht:
+
+3a, 3b, 3d gedeeltelijk mee afgedekt.
+
+Voor meer informatie over mijn werkwijze: "zie mijn AzureBoards"
+
 
 
 
