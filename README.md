@@ -49,7 +49,7 @@ Daarnaast heb ik nog even op Lynda/Linkedin de tijd genomen om wat Typescript re
 
 Hiermee heb ik wat betreft de requirements voor opdracht:
 
-3a, 3b, 3d gedeeltelijk mee afgedekt.
+3a, 3b, 3d gedeeltelijk mee afgedekt en natuurlijk nog wat extra dingen voor puntje 4.
 
 Voor meer informatie over mijn werkwijze: "zie mijn AzureBoards"
 
